@@ -1,0 +1,46 @@
+@import '../../variables.scss';
+
+.nav-item {
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+a {
+
+    &.active {
+        border-bottom: 3px solid $gold;
+    }
+}
+
+.bg-light {
+    background-color: #1976d2!important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #1976d2;
+    font-size: 1em;
+}
+
+h1 {
+    color: white;
+}
+
+.rounded-corners {
+    background-color: white;
+    border-radius: 4px;
+}
+
+.navbar-nav .nav-item .nav-link .material-icons{
+    color: #1976d2;
+}
+    
+/*.navbar-toggler {
+
+}*/
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+*/

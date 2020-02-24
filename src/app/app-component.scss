@@ -1,0 +1,15 @@
+@import '../variables.scss';
+
+.alert-wrapper {
+    position: relative;
+    width: 100%;
+    alert {
+        position: absolute;
+        top: $navbar-height;
+        width: 100%;
+    }
+}
+
+.alert-container {
+    width: 100%;
+}

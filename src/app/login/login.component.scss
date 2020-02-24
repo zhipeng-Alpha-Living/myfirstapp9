@@ -1,0 +1,30 @@
+@import '../../variables.scss';
+
+
+h2 {
+    color: $secondary;
+    margin-bottom: 1em;
+
+}
+
+.form-wrapper {
+    min-width: 40%;
+    margin-bottom: 10%;
+    border: 2px solid $light-grey;
+    padding: 1em 2em;
+    
+}
+
+.box {
+    border: 1px solid grey; 
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.container-sm {
+    height:35vh;
+    margin-top: 3em;
+    margin-left: 12em;
+    margin-right: 3em;
+    
+  }
