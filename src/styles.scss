@@ -17,9 +17,12 @@ body {
 
 .container {
   height:100vh;
-  margin-left: 3em;
-  margin-right: 3em;
-  
+  margin:0;
+  padding:0;
+}
+
+.product-container {
+  margin-left: 5%;
 }
 
 
