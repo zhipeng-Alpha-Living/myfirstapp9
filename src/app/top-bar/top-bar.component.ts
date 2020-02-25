@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 export class TopBarComponent implements OnInit {
 
   public currentUser: any = null;
-
+  isCollapsed = true;
   constructor(
     public auth: AuthService
   ) { }
@@ -20,6 +20,10 @@ export class TopBarComponent implements OnInit {
     })
   }
 
+   toggleCollapsed() {
+    this.isCollapsed = !this.isCollapsed;
+    console.log(this.isCollapsed);
+  }  
 
 }
 

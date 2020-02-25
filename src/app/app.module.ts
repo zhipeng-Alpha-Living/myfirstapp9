@@ -12,6 +12,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+
 
 import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
@@ -56,6 +59,8 @@ import { CartService } from './cart.service';
       AngularFireStorageModule,
       AngularFirestoreModule,
       AngularFireAuthModule,
+      BrowserAnimationsModule,
+      CollapseModule.forRoot(),
       AlertModule.forRoot(),
       RouterModule.forRoot([
          { path: '', component: ProductListComponent },

@@ -9,8 +9,7 @@ import { CartService } from '../cart.service';
 export class ShippingComponent implements OnInit {
   shippingCosts;
   constructor(
-    private cartService: CartService,
-    private shipping: ShippingComponent
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
