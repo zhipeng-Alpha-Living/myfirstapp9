@@ -1,4 +1,4 @@
-export const shipping=[
+export const shippings=[
   {
     type: "Overnight",
     price: 25.99
