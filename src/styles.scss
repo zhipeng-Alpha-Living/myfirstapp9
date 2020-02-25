@@ -1,7 +1,7 @@
 /* Global Styles */
 @import 'variables';
-@import '../node_modules/bootstrap/scss/bootstrap';
-
+@import url('https://unpkg.com/bootstrap/dist/css/bootstrap.min.css');
+@import '~bootstrap/dist/css/bootstrap.min.css';
 * {
   font-family: 'Roboto', Arial, sans-serif;
   color: #616161;
