@@ -3,12 +3,14 @@
   <div class="product-container">
     <h2>Products</h2>
 
-    <div *ngFor="let product of products; index as productId">
-      <h3>
-        <a [title]="product.name + ' details'" [routerLink]="['/products', productId]">
-          {{product.name}}
-        </a>
-      </h3>
+    <div >
+      <ng-container *ngFor="let product of productService.products | async">
+          <div>
+          <a [routerLink]="['/', product.productId]"> {{product.productName}} </a>
+          </div>
+      </ng-container>
+    </div>
+
 
       <p *ngIf="product.description">
         Description:{{ product.description}}
