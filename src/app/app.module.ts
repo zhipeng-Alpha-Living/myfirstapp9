@@ -41,6 +41,7 @@ import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatr
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CartService } from './cart.service';
+import { ProductService } from './services/product.service';
 
 
 
@@ -112,6 +113,7 @@ import { CartService } from './cart.service';
       AuthGuard,
       ChatroomService,
       CartService,
+      ProductService,
    ],
    bootstrap: [
       AppComponent

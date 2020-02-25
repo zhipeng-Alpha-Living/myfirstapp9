@@ -38,7 +38,10 @@ export class SignupComponent implements OnInit, OnDestroy {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      photoUrl:'',
+      quote: 'It is not until you change your identity to match your life blueprint that you will understand why everything in the past never worked.',
+      bio:'Bio is under construction...'
     })
   }
 

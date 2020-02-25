@@ -52,7 +52,6 @@ export class AuthService {
               photoUrl:'https://firebasestorage.googleapis.com/v0/b/firstproject-ae61e.appspot.com/o/default_profile_pic.jpg?alt=media&token=14032ebc-0157-4ff1-b5b5-6e3f45a15997',
               quote: 'It is not until you change your identity to match your life blueprint that you will understand why everything in the past never worked.',
               bio:'Bio is under construction...'
-
             }
 
             userRef.set(updatedUser);
