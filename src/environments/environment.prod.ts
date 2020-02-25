@@ -1,14 +1,14 @@
 export const environment = {
   production: true,
   firebase:{
-    apiKey: 'AIzaSyA7AI-oH96HWUX0q6s-JfZpNFpLbUXeKpg',
-    authDomain: 'firstproject-ae61e.firebaseapp.com',
-    databaseURL: 'https://firstproject-ae61e.firebaseio.com',
-    projectId: 'firstproject-ae61e',
-    storageBucket: 'firstproject-ae61e.appspot.com',
-    messagingSenderId: '679727619244',
-    appId: '1:679727619244:web:8c1f78277c125b52555309',
-    measurementId: 'G-5GMHWK1G3S'
+    apiKey: "AIzaSyAjNUXIQ3QQn0xwtZnbDTVo3mz61877-3k",
+    authDomain: "webapp-360fa.firebaseapp.com",
+    databaseURL: "https://webapp-360fa.firebaseio.com",
+    projectId: "webapp-360fa",
+    storageBucket: "webapp-360fa.appspot.com",
+    messagingSenderId: "1020262341436",
+    appId: "1:1020262341436:web:d196391e2b2c5071539c39",
+    measurementId: "G-4GRR63PM7N"
     }
 };
 
