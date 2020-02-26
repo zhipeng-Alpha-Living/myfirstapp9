@@ -87,7 +87,6 @@ label {
 
 /* Button */
 .button, button {
-  display: inline-flex;
   align-items: center;
   padding: 8px 16px;
   border-radius: 2px;
@@ -107,7 +106,7 @@ label {
 }
 
 .sign-in-button {
-  display: inline-flex;
+
   align-items: center;
   padding: 8px 16px;
   border-radius: 2px;

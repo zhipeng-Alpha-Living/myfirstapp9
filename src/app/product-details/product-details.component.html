@@ -11,10 +11,14 @@
 
               <div class="details-container">
                 <h2>{{details.productName}}</h2>
-                <a class="product-description">{{details.descript}}</a>
+                <a class="product-price">RM{{details.price}}</a>
               </div>
-
-            <button (click)="addToCart(product)">Buy</button>
+              <div class="cart-buy-container">
+              <button class="long-btn" (click)="addToCart(product)" >Add to cart</button>
+              <button class="long-btn" (click)="addToCart(product)" >Buy now</button>
+              </div>
+              <p class="product-description">{{details.description}}</p>
+              
           </div>
   </div>
 </div>
