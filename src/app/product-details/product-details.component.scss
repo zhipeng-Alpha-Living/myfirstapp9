@@ -24,12 +24,18 @@ img {
   float: left;
 }
 .long-btn {
-  width: 96vw;
+  width: 24px;
   
    a{
      text-align: center;
     }
   
+} 
 
+@media screen and (max-width:4px) {
+	.cart-buy-container{ 
+    .long-btn {
+      width: 96vw;
+    }
+  }
 }
-
