@@ -8,9 +8,9 @@
           <div>
               <div *ngIf="product.imageUrl" class="img-size">
                 <img [src]="product.imageUrl" >
-                <button class="view-btn">View</button>
+                <button class="view-btn" [routerLink]="['/products', product.productId]">View</button>
               </div>
-          <a [routerLink]="['/', product.productId]" class="productName-font"> {{product.productName}} </a>
+          <a [routerLink]="['/products', product.productId]" class="productName-font"> {{product.productName}} </a>
           </div>
           <p *ngIf="product.description">
             Description: {{ product.description}}

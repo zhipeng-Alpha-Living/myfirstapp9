@@ -1,13 +1,20 @@
 <div class="container">
   <div class="page-container">
-  <h2>Product Details</h2>
+    <h1>Product Details</h1>   
+          <div class="whole-details-container">
 
-  <div *ngIf="product">
-    <h3>{{ product.name }}</h3>
-    <h4>${{ product.price }}</h4>
-    <p>{{ product.description }}</p>
+              <div class="details-container">
+                <div *ngIf="details.imageUrl" class="img-size">
+                    <img [src]="details.imageUrl" >
+                </div>
+              </div>
 
-    <button (click)="addToCart(product)">Buy</button>
-  </div>
+              <div class="details-container">
+                <h2>{{details.productName}}</h2>
+                <a class="product-description">{{details.descript}}</a>
+              </div>
+
+            <button (click)="addToCart(product)">Buy</button>
+          </div>
   </div>
 </div>
