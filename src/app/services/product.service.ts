@@ -10,7 +10,7 @@ export class ProductService {
   constructor(
     private db: AngularFirestore,
   ) {
-    this.products = db.collection('products').valueChanges();
+    this.products = db.collection('products').valueChanges()
   }
 
 }

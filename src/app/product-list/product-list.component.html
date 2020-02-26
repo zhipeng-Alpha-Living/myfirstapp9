@@ -1,31 +1,36 @@
 
-<div class="container">
-  <div class="product-container">
-    <h2>Products</h2>
 
-    <div >
+  <div class="page-container">
+    <h1>Products</h1>
+    
       <ng-container *ngFor="let product of productService.products | async">
+        <div class="product-container">
           <div>
+              <div *ngIf="product.imageUrl" class="img-size">
+                <img [src]="product.imageUrl" >
+              </div>
           <a [routerLink]="['/', product.productId]"> {{product.productName}} </a>
           </div>
+          <p *ngIf="product.description">
+            Description: {{ product.description}}
+          </p>
+          <p *ngIf="product.price">
+            Price: RM{{ product.price}}
+          </p>
+          
+
+          <button (click)="share()">
+            Share
+          </button>
+
+          <app-product-alerts
+            [product]="product"
+            (notify)='onNotify()'>
+          </app-product-alerts>
+        </div>
       </ng-container>
-    </div>
-
-
-      <p *ngIf="product.description">
-        Description:{{ product.description}}
-      </p>
-
-      <button (click)="share()">
-        Share
-      </button>
-
-      <app-product-alerts
-        [product]="product"
-        (notify)='onNotify()'>
-      </app-product-alerts>
   </div>
-</div>
+
 <!-- 
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that

@@ -1,15 +1,14 @@
-import { Component } from '@angular/core';
-//import { products } from '../products';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
     constructor(
-      public productService:ProductService,
+      public productService: ProductService,
     ) { }
 
   share() {
@@ -18,6 +17,9 @@ export class ProductListComponent {
 
   onNotify(){
     window.alert('You will be notified when the product goes on sale');
+  }
+
+   ngOnInit(): void {
   }
 }
 
