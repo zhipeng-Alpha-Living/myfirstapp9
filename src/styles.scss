@@ -23,6 +23,10 @@ body {
   border:0;
 }
 
+@media (min-width: 1vw){
+  .container{ max-width: 100%;}
+}
+
 .page-container {
   margin-left: 2%;
 }

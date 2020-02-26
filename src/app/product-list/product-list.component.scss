@@ -5,6 +5,7 @@ img {
 }
 
 .img-size {
+  position: relative;
   max-width:350px;
   margin-right: 0;
 }
@@ -12,4 +13,39 @@ img {
 .product-container {
   margin:1%;
   float: left;
+
+    .view-btn {
+       position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0,0.3);
+        color: white;
+        font-size: 1vw;
+        padding: 0.4vw 1.6vw ;
+        border: none;
+        cursor: pointer;
+        border-radius: 6px;
+        text-align: center;
+    }
+
+    .view-btn:hover {
+      background-color: rgb(25, 118, 210);
+    }
+}
+
+.productName-font {
+  font-size: 1.5vw;
+}
+
+@media screen and (max-width:990px) {
+	.productName-font{ font-size: 14px; }
+}
+
+@media screen and (max-width:1450px) {
+  .product-container .view-btn{ 
+    font-size: 15px;
+    padding: 5px 23px ;                            
+    }
 }
