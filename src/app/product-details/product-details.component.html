@@ -1,27 +1,32 @@
 <div class="container">
   <div class="page-container">
     <h1>Product Details</h1>   
-          <div class="whole-details-container">
+        <div class="whole-details-container">
 
-              <div class="details-container">
+              <div class="img-container">
                 <div *ngIf="details.imageUrl" class="img-size">
                     <img [src]="details.imageUrl" >
                 </div>
               </div>
-              <div >
-                <div class="details-container">
-                  <h2>{{details.productName}}</h2>
-                  <a class="product-price">RM{{details.price}}</a>
-                </div>
 
-                <div class="cart-buy-container">
-                  <button class="long-btn" (click)="addToCart(product)" >Add to cart</button>
-                  <button class="long-btn" (click)="addToCart(product)" >Buy now</button>
-                </div>
-                <div class="description-container">
-                  <p class="product-description">{{details.description}}</p>
-                </div>
-              </div>
-          </div> 
+          <div class="outter-details-container">
+
+             <div class="details-container">
+                <h2>{{details.productName}}</h2>
+                <a class="product-price">RM{{details.price}}</a>
+            </div>
+
+            <div class="cart-buy-container">
+              <button class="top-long-btn" (click)="addToCart(product)" >Add to cart</button>
+               <button class="bottom-long-btn" (click)="addToCart(product)" >Buy now</button>
+            </div>
+                
+            <div class="description-container">
+              <p class="product-description">{{details.description}}</p>
+            </div>
+
+          </div>
+              
+        </div> 
   </div>
-</div>
+</div> 
