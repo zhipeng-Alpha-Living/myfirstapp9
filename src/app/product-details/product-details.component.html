@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div class="container">
   <div class="page-container">
     <h1>Product Details</h1>   
@@ -13,12 +15,21 @@
 
              <div class="details-container">
                 <h2>{{details.productName}}</h2>
-                <a class="product-price">RM{{details.price}}</a>
+                <div>
+                 <a class="product-price" style="float: left;">RM{{details.price}}</a>
+                   <div style="margin-left: 9px; float:left;">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="cart-buy-container">
-              <button class="top-long-btn" (click)="addToCart(product)" >Add to cart</button>
-               <button class="bottom-long-btn" (click)="addToCart(product)" >Buy now</button>
+              <button class="top-long-btn" (click)="addToCart(details)" >Add to cart</button>
+               <button class="bottom-long-btn" (click)="addToCart(details)" >Buy now</button>
             </div>
                 
             <div class="description-container">
@@ -27,6 +38,13 @@
 
           </div>
               
+              
         </div> 
   </div>
 </div> 
+        <div class="button-bar">
+                <button class="chat-button"><i class='material-icons'>chat</i></button>
+                <button class="cart-button"><i class='material-icons'>shopping_cart</i></button>
+                <button class="notification-button"><i class='material-icons'>notification_important</i></button>
+                <button class="profile-button"><i class='material-icons'>perm_identity</i></button>
+        </div>

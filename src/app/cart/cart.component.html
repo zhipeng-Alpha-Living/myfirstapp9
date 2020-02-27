@@ -7,7 +7,7 @@
   </p>
 
   <div class="cart-item" *ngFor="let item of items">
-    <span>{{ item.name }}</span>
+    <span>{{ item.productName }}</span>
     <span>{{ item.price | currency }}</span>
   </div>
 
@@ -23,7 +23,7 @@
       <input id="address" type="text" formControlName="address">
     </div>
 
-    <button class="button" type="submit">Purchase</button>
+    <button class="button" type="submit">Proceed to payment</button>
   </form>
   </div>
 </div>
