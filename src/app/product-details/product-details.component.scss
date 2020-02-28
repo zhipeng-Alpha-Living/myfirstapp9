@@ -46,9 +46,15 @@ h2 {
 }
 
 
-a:not([href]) {
+a:not([href]).product-price{
     color: rgb(6, 173, 165); 
     font-size: 20px;
+    float: left;
+}
+
+.review-container {
+  margin-left: 9px; 
+  float:left;
 }
 
 .checked {
@@ -155,40 +161,10 @@ a:not([href]) {
     color: black;
   }
 
-  .button-bar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    .chat-button{
-      width: 25%;
-      height: 6vh;
-      margin-bottom: 0px;
-      vertical-align: bottom;
-    }
-    .cart-button{
-      width: 25%;
-      height: 6vh;
-      margin-bottom: 0px;
-      vertical-align: bottom;
-    }
-    .profile-button{
-      width: 25%;
-      height: 6vh;
-      margin-bottom: 0px;
-      vertical-align: bottom;
-    }
-    .notification-button{
-      width: 25%;
-      height: 6vh;
-      margin-bottom: 0px;
-      vertical-align: bottom;
-    }
-    *{
-      color: white;
-    }
-  }
-
   h2{
       margin-bottom: 26px;
   }
+
+
 } 
+

@@ -1,0 +1,57 @@
+@media screen and (max-width:415px) {
+  .button-bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      .chat-button{
+        width: 25%;
+        height: 6vh;
+        margin-bottom: 0px;
+        vertical-align: bottom;
+      }
+      .cart-button{
+        width: 25%;
+        height: 6vh;
+        margin-bottom: 0px;
+        vertical-align: bottom;
+
+        a.fa-shopping-cart {
+          position: relative;
+          font-size: 2em;
+          color: white;
+          cursor: pointer;
+        }
+        span.fa-comment {
+          position: absolute;
+          font-size: 0.6em;
+          top: -9px;
+          color: red;
+          right: -16px;
+        }
+        span.num {
+          position: absolute;
+          font-size: 0.3em;
+          top: -5px;
+          color: #fff;
+          right: -10px;
+        }
+
+      }
+      .profile-button{
+        width: 25%;
+        height: 6vh;
+        margin-bottom: 0px;
+        vertical-align: bottom;
+      }
+      .notification-button{
+        width: 25%;
+        height: 6vh;
+        margin-bottom: 0px;
+        vertical-align: bottom;
+      }
+      *{
+        color: white;
+      }
+  }
+
+}  

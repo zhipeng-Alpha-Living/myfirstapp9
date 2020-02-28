@@ -27,12 +27,9 @@ body {
   .container{ max-width: 100%;}
 }
 
-
-
-router-outlet + *  {
-  padding: 0 16px;
+router-outlet + * {
+   padding: 0 16px;
 }
-
 /* Text */
 
 h1 {

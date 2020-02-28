@@ -43,6 +43,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CartService } from './cart.service';
 import { ProductService } from './services/product.service';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 
@@ -101,6 +102,7 @@ import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
       ProfileComponent,
       EditProfileComponent,
       BottomBarComponent,
+      PaymentComponent,
       
    ],
   

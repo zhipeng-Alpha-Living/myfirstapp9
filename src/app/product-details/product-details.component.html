@@ -16,8 +16,8 @@
              <div class="details-container">
                 <h2>{{details.productName}}</h2>
                 <div>
-                 <a class="product-price" style="float: left;">RM{{details.price}}</a>
-                   <div style="margin-left: 9px; float:left;">
+                 <a class="product-price">RM{{details.price}}</a>
+                   <div class="review-container" >
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -28,25 +28,17 @@
             </div>
 
             <div class="cart-buy-container">
-              <button class="top-long-btn" (click)="addToCart(details)" >Add to cart</button>
-               <button class="bottom-long-btn" (click)="addToCart(details)" >Buy now</button>
+              <button class="top-long-btn" (click)="addToCart(details)">Add to cart</button>
+              <button class="bottom-long-btn" >Buy now</button>
             </div>
-               <div>
-                 <p>Testing row that need a lot wor dto fill up this division . Need more  and more to test . Ok ! done!</p>
-              </div> 
             <div class="description-container">
               <p class="product-description">{{details.description}}</p>
+              
             </div>
-
           </div>
-              
-              
+
         </div> 
   </div>
+
 </div> 
-        <div class="button-bar">
-                <button class="chat-button"><i class='material-icons'>chat</i></button>
-                <button class="cart-button"><i class='material-icons'>shopping_cart</i></button>
-                <button class="notification-button"><i class='material-icons'>notification_important</i></button>
-                <button class="profile-button"><i class='material-icons'>perm_identity</i></button>
-        </div>
+
