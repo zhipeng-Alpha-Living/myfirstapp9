@@ -42,6 +42,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { CartService } from './cart.service';
 import { ProductService } from './services/product.service';
+import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 
 
 
@@ -99,6 +100,7 @@ import { ProductService } from './services/product.service';
       ChatroomWindowComponent,
       ProfileComponent,
       EditProfileComponent,
+      BottomBarComponent,
       
    ],
   
