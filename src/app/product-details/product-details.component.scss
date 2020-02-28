@@ -99,11 +99,10 @@ a:not([href]).product-price{
     .top-long-btn {
       width: 100%;
       align-items: center;
-      border-top:9px solid rgb(126, 167, 194);
+      border-top:8px solid rgb(126, 167, 194);
       border-bottom:1.5px solid rgb(126, 167, 194);
       border-radius: 0px;
       margin-bottom: 0px;
-      
       *{
         color: white;
       }
@@ -111,7 +110,7 @@ a:not([href]).product-price{
     .bottom-long-btn {
       width: 100%;
       align-items: center;
-      border-bottom: 9px solid rgb(126, 167, 194);
+      border-bottom: 8px solid rgb(126, 167, 194);
       border-top:1.5px solid rgb(126, 167, 194);
       border-radius: 0px;
       margin-bottom: 0px;
@@ -130,14 +129,12 @@ a:not([href]).product-price{
     border-right: 1px;
     padding: 0vw;
   }
-
    .img-container{
     float: none;
     width: 100%;
     border: 0px solid rgb(0, 0, 0);
    }
   
-
   .outter-details-container{
     float: none;
     width: 100%;
@@ -159,6 +156,8 @@ a:not([href]).product-price{
   }
   .product-description {
     color: black;
+    padding-left: 0.9vw;
+  
   }
 
   h2{

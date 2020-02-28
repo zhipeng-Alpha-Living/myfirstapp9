@@ -44,6 +44,7 @@ import { CartService } from './cart.service';
 import { ProductService } from './services/product.service';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentService } from './services/payment.service';
 
 
 
@@ -119,6 +120,7 @@ import { PaymentComponent } from './payment/payment.component';
       ChatroomService,
       CartService,
       ProductService,
+      PaymentService,
    ],
    bootstrap: [
       AppComponent

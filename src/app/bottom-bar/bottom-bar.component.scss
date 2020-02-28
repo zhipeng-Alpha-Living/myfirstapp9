@@ -12,6 +12,29 @@
         height: 6vh;
         margin-bottom: 0px;
         vertical-align: bottom;
+
+          a.fa-commenting-o{
+            position: relative;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+          }
+          span.fa-circle {
+            position: absolute;
+            font-size: 0.6em;
+            top: -3px;
+            color: red;
+            right: -9px;
+            
+          }
+          span.chat-num {
+            position: absolute;
+            font-size: 0.4em;
+            top: -1px;
+            color: #fff;
+            right: -5px;
+          }
+
       }
       .cart-button{
         width: 25%;
@@ -19,41 +42,90 @@
         margin-bottom: 0px;
         vertical-align: bottom;
 
-        a.fa-shopping-cart {
-          position: relative;
-          font-size: 2em;
-          color: white;
-          cursor: pointer;
-        }
-        span.fa-comment {
-          position: absolute;
-          font-size: 0.6em;
-          top: -9px;
-          color: red;
-          right: -16px;
-         
-        }
-        span.num {
-          position: absolute;
-          font-size: 0.3em;
-          top: -5px;
-          color: #fff;
-          right: -10px;
-        }
 
-      }
-      .profile-button{
-        width: 25%;
-        height: 6vh;
-        margin-bottom: 0px;
-        vertical-align: bottom;
+          a.fa-shopping-cart {
+            position: relative;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+          }
+          span.fa-circle {
+            position: absolute;
+            font-size: 0.6em;
+            top: -3px;
+            color: red;
+            right: -9px;
+          
+          }
+        
+          span.cart-num {
+            position: absolute;
+            font-size: 0.4em;
+            top: -1px;
+            color: #fff;
+            right: -5px;
+          }
+
       }
       .notification-button{
         width: 25%;
         height: 6vh;
         margin-bottom: 0px;
         vertical-align: bottom;
+
+          a.fa-bell-o {
+            position: relative;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+          }
+          span.fa-circle {
+            position: absolute;
+            font-size: 0.6em;
+            top: -3px;
+            color: red;
+            right: -5px;
+          
+          }
+        
+          span.notifi-num {
+            position: absolute;
+            font-size: 0.4em;
+            top: -1px;
+            color: #fff;
+            right: -1px;
+          }
       }
+      .profile-button{
+        width: 25%;
+        height: 6vh;
+        margin-bottom: 0px;
+        vertical-align: bottom;
+
+           a.fa-user-o {
+            position: relative;
+            font-size: 2em;
+            color: white;
+            cursor: pointer;
+          }
+          span.fa-circle {
+            position: absolute;
+            font-size: 0.6em;
+            top: -3px;
+            color: red;
+            right: -6px;
+          
+          }
+        
+          span.notifi-num {
+            position: absolute;
+            font-size: 0.4em;
+            top: -1px;
+            color: #fff;
+            right: -2px;
+          }
+      }
+      
       *{
         color: white;
       }
