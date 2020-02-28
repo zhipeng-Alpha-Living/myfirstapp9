@@ -1,0 +1,17 @@
+.cart-container{
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.cart-item{
+  width: 100%;
+  min-width: 320px;
+  max-width: 415px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  display: flex;
+  margin-bottom: 8px;
+  border-radius: 2px;
+  background-color: #EEEEEE;
+  justify-content: space-around;                              
+} 
