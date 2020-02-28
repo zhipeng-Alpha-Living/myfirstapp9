@@ -79,7 +79,8 @@ import { PaymentComponent } from './payment/payment.component';
             ]
          },
          { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
-         { path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard]}
+         { path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard]},
+         { path: 'payment', component: PaymentComponent},
 
        ])
    ],

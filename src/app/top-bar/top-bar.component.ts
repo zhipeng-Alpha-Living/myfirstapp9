@@ -10,6 +10,7 @@ export class TopBarComponent implements OnInit {
 
   public currentUser: any = null;
   isCollapsed = true;
+  
   constructor(
     public auth: AuthService
   ) { }

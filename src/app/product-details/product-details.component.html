@@ -29,7 +29,7 @@
 
             <div class="cart-buy-container">
               <button class="top-long-btn" (click)="addToCart(details)">Add to cart</button>
-              <button class="bottom-long-btn" >Buy now</button>
+              <button class="bottom-long-btn"  [routerLink]="['/payment']">Buy now</button>
             </div>
             <div class="description-container">
               <p class="product-description">{{details.description}}</p>

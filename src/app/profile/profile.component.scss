@@ -1,41 +1,39 @@
 @import '../../variables.scss';
 
 .no-photo {
-    height: 150px;
-    width: 150px;
-    background: $grey;
-    margin: 1em 0;
-    color: white;
-    border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  background: $grey;
+  margin: 1em 0;
+  color: white;
+  border-radius: 50%;
 }
 
 .profile-pic {
-    max-width: 150px;
-    max-height: 150px;
-    
-
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .name {
-    font-size: 1.4em;
-    font-weight: 200;
+  font-size: 1.4em;
+  font-weight: 200;
 }
 
 .quote {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 .bio {
-    margin-bottom: 2em;
-    font-weight: 200;
+  margin-bottom: 2em;
+  font-weight: 200;
 }
 
-.container {
-    height:35vh;
-    margin-top: 4em;
-    margin-left: 12em;
-    margin-right: 3em;
+.profile-container {
+  height:35vh;
+  margin-top: 4em;
+  margin-left: 3em;
+  margin-right: 3em;
     
-  }
+}
   
 

@@ -3,6 +3,10 @@
       position: fixed;
       bottom: 0;
       width: 100%;
+
+      button {
+        border-radius: 0px;
+      }
       .chat-button{
         width: 25%;
         height: 6vh;
@@ -27,6 +31,7 @@
           top: -9px;
           color: red;
           right: -16px;
+         
         }
         span.num {
           position: absolute;
