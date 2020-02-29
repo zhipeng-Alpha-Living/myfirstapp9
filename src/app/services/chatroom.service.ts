@@ -45,14 +45,15 @@ export class ChatroomService {
     this.chatrooms = db.collection('chatrooms').valueChanges();
   }
 
-   public createMessage(text: string): void {
-     const chatroomId = this.changeChatroom.value;
-     const message = {
-       createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
-       message: text,
-       sender:this.authService.currentUserSnapshot
-     };
+    public createMessage(text: string): void {
+      const chatroomId = this.changeChatroom.value;
+      const message = {
+        createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+        message: text,
+        sender:this.authService.currentUserSnapshot
+      };
 
-     this.db.collection(`chatrooms/${chatroomId}/messages`).add(message);   
+      this.db.collection(`chatrooms/${chatroomId}/messages`).add(message);   
     }
+
 }
