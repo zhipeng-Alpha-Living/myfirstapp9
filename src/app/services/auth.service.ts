@@ -16,7 +16,8 @@ import {of} from 'rxjs';
 export class AuthService {
 
   public currentUser: Observable<User | null>;
-  public currentUserSnapshot: User | null;  
+  public currentUserSnapshot: User | null; 
+  public userCart: Observable<any>; 
   
   constructor(
     private router: Router,

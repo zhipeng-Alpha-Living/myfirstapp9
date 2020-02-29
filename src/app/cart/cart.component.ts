@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-
+import { AuthService } from '../services/auth.service';
 import { CartService } from '../cart.service';
 
 @Component({
@@ -9,12 +9,14 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+  public currentUser: any = null;
   items;
   checkoutForm;
 
   constructor(
     private cartService: CartService, 
     private formBuilder: FormBuilder,
+    public auth: AuthService
   ) {  
     this.checkoutForm = this.formBuilder.group({
       name:'',
@@ -23,6 +25,9 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.auth.currentUser.subscribe( user => {
+      this.currentUser = user;
+    })
     this.items=this.cartService.getItem();
   }
   
