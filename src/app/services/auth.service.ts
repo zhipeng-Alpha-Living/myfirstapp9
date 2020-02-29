@@ -81,5 +81,6 @@ export class AuthService {
 
   private setCurrentUserSnapshot(): void {
     this.currentUser.subscribe(user => this.currentUserSnapshot = user);
-}}
+  }
+}
 
