@@ -20,6 +20,9 @@ import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
 import { AuthService } from './services/auth.service';
 import { ChatroomService } from './services/chatroom.service';
+import { CartService } from './cart.service';
+import { ProductService } from './services/product.service';
+import { PaymentService } from './services/payment.service';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -40,11 +43,9 @@ import { ChatMessageComponent } from './chat/components/chat-message/chat-messag
 import { ChatroomWindowComponent } from './chat/components/chatroom-window/chatroom-window.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
-import { CartService } from './cart.service';
-import { ProductService } from './services/product.service';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { PaymentComponent } from './payment/payment.component';
-import { PaymentService } from './services/payment.service';
+
 
 
 
