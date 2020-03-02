@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -17,11 +18,12 @@ export class ProductDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     public productService: ProductService,
+    public authService: AuthService,
   ) { 
     this.productService.selectedProduct.subscribe(dtl => {
       this.details = dtl;
-    })
-}
+      })
+  }
 
   ngOnInit() {
     this.productSubscription.push(
@@ -34,6 +36,7 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(product){
     this.cartService.addToCart(this.details);
+
     window.alert('Your product has been added to the cart!');
   }
 

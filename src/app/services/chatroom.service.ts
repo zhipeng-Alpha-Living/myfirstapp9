@@ -50,7 +50,7 @@ export class ChatroomService {
       const message = {
         createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
         message: text,
-        sender:this.authService.currentUserSnapshot
+        sender:this.authService.currentUserSnapshot,
       };
 
       this.db.collection(`chatrooms/${chatroomId}/messages`).add(message);   
