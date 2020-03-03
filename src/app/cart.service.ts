@@ -39,9 +39,8 @@ export class CartService {
       productId: cartItemId,
     })
 
-    
   }
-
+  
   getItem(){
     return this.items;
   }
@@ -55,7 +54,9 @@ export class CartService {
     return this.http.get('')
   }
 
-  
+  addQuantity(cartQuantity: number, productId: string){
+    this.db.collection(`users/${this.userId}/cart`).doc(productId).update({cartQuantity: cartQuantity})
+  }
 
 
 }

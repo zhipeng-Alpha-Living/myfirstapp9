@@ -6,18 +6,21 @@
     <a routerLink="/shipping">Shipping Prices</a>
   </p>
 
-  <div class="cart-item" *ngFor="let item of items">
+  <div class="cart-item-container" *ngFor="let item of items">
+    <span><div class="img-container"><img [src]="item.imageUrl"></div></span>
     <span>
-      <div class="cart-item-name">
-        {{ item.productName }}
+      <div class="details-container" >
+        <p>{{item.productName}}</p>
+        <div>
+          <a class="cartPrice-container">RM{{item.productPrice}}</a>
+          <div class="cartQuantity-container">
+            <button class="reduce-button" (click)="deductQuantity(item.cartQuantity, item.productId)"><i class="material-icons">remove</i></button>
+            <a>{{item.cartQuantity}}</a>
+            <button class="add-button" (click)="addQuantity(item.cartQuantity, item.productId)"><i class="material-icons">add</i></button>
+          </div>
+        </div>
       </div>
-    </span>
-    <span>
-      <div class="cart-item-price">
-        {{ item.price | currency }}
-      </div>
-    </span>
-
+    </span>     
   </div>
 
   

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../cart.service';
+import { Cart } from '../interfaces/cart';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-cart',
@@ -10,32 +12,46 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
   public currentUser: any = null;
-  items;
-  checkoutForm;
+  public items:any;
+  
+
 
   constructor(
     private cartService: CartService, 
     private formBuilder: FormBuilder,
-    public auth: AuthService
+    public auth: AuthService,
+    private db: AngularFirestore,
   ) {  
-    this.checkoutForm = this.formBuilder.group({
-      name:'',
-      address:'',
+ 
+    this.cartService.cartItems.subscribe(items =>{
+      this.items = items;
     })
+
   }
 
   ngOnInit() {
     this.auth.currentUser.subscribe( user => {
       this.currentUser = user;
     })
-    this.items=this.cartService.getItem();
+    //this.items=this.cartService.getItem();
   }
   
   onSubmit(customerData){
     //process check out data
     this.items = this.cartService.clearCart();
-    this.checkoutForm.reset();
 
     console.warn('Your order has been submitted', customerData);
+  }
+
+  public addQuantity(cartQuantity: number, productId: string){
+    cartQuantity = cartQuantity + 1;
+    this.cartService.addQuantity(cartQuantity, productId)
+  }
+
+  public deductQuantity(cartQuantity: number, productId: string){
+    if(cartQuantity > 1){
+      cartQuantity = cartQuantity - 1;
+      this.cartService.addQuantity(cartQuantity, productId)
+    }
   }
 }
