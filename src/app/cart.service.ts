@@ -36,7 +36,10 @@ export class CartService {
     this.db.collection(`users/${this.userId}/cart`).doc(cartItemId).set({
       cartQuantity: 1,
       createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+      imageUrl: product.imageUrl,
       productId: cartItemId,
+      productName: product.productName,
+      productPrice: product.price,
     })
 
   }
@@ -58,5 +61,8 @@ export class CartService {
     this.db.collection(`users/${this.userId}/cart`).doc(productId).update({cartQuantity: cartQuantity})
   }
 
+  deleteCartItem(productId: string){
+    this.db.collection(`users/${this.userId}/cart`).doc(productId).delete()
+  }
 
 }

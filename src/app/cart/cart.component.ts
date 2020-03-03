@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { CartService } from '../cart.service';
 import { Cart } from '../interfaces/cart';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class CartComponent implements OnInit {
   public currentUser: any = null;
-  public items:any;
+  public items: Observable<any>;
   
 
 
@@ -33,14 +34,12 @@ export class CartComponent implements OnInit {
     this.auth.currentUser.subscribe( user => {
       this.currentUser = user;
     })
-    //this.items=this.cartService.getItem();
+  
   }
   
   onSubmit(customerData){
-    //process check out data
-    this.items = this.cartService.clearCart();
 
-    console.warn('Your order has been submitted', customerData);
+
   }
 
   public addQuantity(cartQuantity: number, productId: string){
@@ -52,6 +51,8 @@ export class CartComponent implements OnInit {
     if(cartQuantity > 1){
       cartQuantity = cartQuantity - 1;
       this.cartService.addQuantity(cartQuantity, productId)
+    } else if(cartQuantity <= 1){
+      this.cartService.deleteCartItem(productId)
     }
   }
 }
