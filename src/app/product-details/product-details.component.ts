@@ -4,6 +4,7 @@ import { ProductService } from '../services/product.service';
 import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { Cart } from '../interfaces/cart';
 
 @Component({
   selector: 'app-product-details',
@@ -13,6 +14,8 @@ import { AuthService } from '../services/auth.service';
 export class ProductDetailsComponent implements OnInit {
     public productSubscription: Subscription[] = [];
     public details:any;
+    public cartItemArray: Cart[] = [];
+    public response: any;
 
   constructor( 
     private route: ActivatedRoute,
@@ -23,19 +26,40 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.selectedProduct.subscribe(dtl => {
       this.details = dtl;
       })
+
+    this.cartService.cartItems.subscribe(tempItem => { this.response = tempItem;
+      this.response.forEach(element => {
+        this.cartItemArray.push({
+          cartQuantity: element.cartQuantity,
+          productId: element.productId,
+        })
+      })
+    })
   }
 
-  ngOnInit() {
+  ngOnInit(){
     this.productSubscription.push(
       this.route.paramMap.subscribe(params => {
           const productId = params.get('productId');
           this.productService.selectProduct.next(productId);
-      }))
+        }
+      )
+    )
+
 
   }
 
   addToCart(product){
-    this.cartService.addToCart(this.details);
+    
+    for(let i =0; i < this.cartItemArray.length; i++){
+      if(this.details.productId === this.cartItemArray[i].productId){
+        this.cartItemArray[i].cartQuantity = this.cartItemArray[i].cartQuantity + 1
+        this.cartService.addQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
+      }else {
+        this.cartService.addToCart(this.details);
+      }
+    }
+    
 
     window.alert('Your product has been added to the cart!');
   }
