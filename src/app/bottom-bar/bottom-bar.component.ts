@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-
+import { CartService } from '../cart.service';
+ 
 @Component({
   selector: 'app-bottom-bar',
   templateUrl: './bottom-bar.component.html',
@@ -10,8 +11,12 @@ export class BottomBarComponent implements OnInit {
   public currentUser: any = null;
 
   constructor(
-    public auth: AuthService
-  ) { }
+    public auth: AuthService,
+    public cartService: CartService,
+
+  ) {
+    
+  }
 
   ngOnInit() {
      this.auth.currentUser.subscribe( user => {

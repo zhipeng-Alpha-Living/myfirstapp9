@@ -31,7 +31,7 @@ export class CartService {
   addToCart(product){
     const cartItemId = product.productId;
 
-    console.log(this.cartItems)
+    
 
     this.db.collection(`users/${this.userId}/cart`).doc(cartItemId).set({
       cartQuantity: 1,

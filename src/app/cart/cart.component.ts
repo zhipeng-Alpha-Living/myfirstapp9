@@ -43,13 +43,13 @@ export class CartComponent implements OnInit {
   }
 
   public addQuantity(cartQuantity: number, productId: string){
-    cartQuantity = cartQuantity + 1;
+    cartQuantity++
     this.cartService.addQuantity(cartQuantity, productId)
   }
 
   public deductQuantity(cartQuantity: number, productId: string){
     if(cartQuantity > 1){
-      cartQuantity = cartQuantity - 1;
+      cartQuantity--
       this.cartService.addQuantity(cartQuantity, productId)
     } else if(cartQuantity <= 1){
       this.cartService.deleteCartItem(productId)

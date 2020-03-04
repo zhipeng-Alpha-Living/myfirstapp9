@@ -5,6 +5,7 @@ import { CartService } from '../cart.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { Cart } from '../interfaces/cart';
+import { Product } from '../classes/product';
 
 @Component({
   selector: 'app-product-details',
@@ -45,7 +46,7 @@ export class ProductDetailsComponent implements OnInit {
         }
       )
     )
-
+  
 
   }
 
@@ -53,14 +54,13 @@ export class ProductDetailsComponent implements OnInit {
     
     for(let i =0; i < this.cartItemArray.length; i++){
       if(this.details.productId === this.cartItemArray[i].productId){
-        this.cartItemArray[i].cartQuantity = this.cartItemArray[i].cartQuantity + 1
+        this.cartItemArray[i].cartQuantity++
         this.cartService.addQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
       }else {
         this.cartService.addToCart(this.details);
       }
     }
     
-
     window.alert('Your product has been added to the cart!');
   }
 
