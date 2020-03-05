@@ -12,7 +12,7 @@ import { Product } from '../classes/product';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
     public productSubscription: Subscription[] = [];
     public details:any;
     public cartItemArray: Cart[] = [];
@@ -70,8 +70,8 @@ export class ProductDetailsComponent implements OnInit {
     window.alert('Your product has been added to the cart!');
   }
 
-    //ngOnDestroy() {
-    //this.productSubscription.forEach( sub => sub.unsubscribe());
-    //}
+    ngOnDestroy() {
+    this.productSubscription.forEach( sub => sub.unsubscribe());
+    }
 
 }

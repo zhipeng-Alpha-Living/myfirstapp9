@@ -13,7 +13,7 @@ export class BottomBarComponent implements OnInit {
    
   constructor(
     public auth: AuthService,
-    //public cartService: CartService,
+    /public cartService: CartService,
 
   ) {
       this.auth.currentUser.subscribe( user => {

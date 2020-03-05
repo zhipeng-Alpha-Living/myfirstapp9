@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../cart.service';
@@ -6,6 +6,7 @@ import { Cart } from '../interfaces/cart';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,8 @@ import { User } from '../interfaces/user';
 })
 export class CartComponent implements OnInit {
   public items: Observable<any>;
-  
+  public cartSubscription: Subscription[] = [];
+
   constructor(
     private cartService: CartService, 
     private formBuilder: FormBuilder,
@@ -50,4 +52,8 @@ export class CartComponent implements OnInit {
       this.cartService.deleteCartItem(productId)
     }
   }
+
+  ngOnDestroy() {
+    this.cartSubscription.forEach( sub => sub.unsubscribe());
+    }
 }
