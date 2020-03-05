@@ -31,8 +31,6 @@ export class CartService {
   addToCart(product){
     const cartItemId = product.productId;
 
-    
-
     this.db.collection(`users/${this.userId}/cart`).doc(cartItemId).set({
       cartQuantity: 1,
       createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
