@@ -14,7 +14,7 @@ import { User } from '../interfaces/user';
 export class CartService {
  
   
-  public currentUser: User[];
+  public currentUser = this.authService.currentUserSnapshot.id;
   public cartItems: Observable<any>;
 
   constructor(
@@ -23,14 +23,10 @@ export class CartService {
   private db: AngularFirestore,
 
   ) {
-    this.authService.currentUser.subscribe(user => this.currentUser = user)
-    console.log(this.currentUser)
+   
 
-    this.cartItems = this.authService.currentUser.subscribe.pipe(
-      (user=> this.currentUser=user),
-     db.collection(`users/${this.currentUser}/cart`).valueChanges()
-      )
-  
+    this.cartItems = db.collection(`users/${this.currentUser}/cart`).valueChanges()
+    
   }
   
 
