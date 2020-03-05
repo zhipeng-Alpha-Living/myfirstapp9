@@ -1,41 +1,47 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { ProductService } from './services/product.service';
 import { AuthService } from './services/auth.service';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { switchMap,  } from 'rxjs/operators';
 import * as firebase from 'firebase';
 import { Cart } from '../interfaces/cart';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  items = [];
-  //public currentCartItem: Observable<any>;
-  private userId = this.authService.currentUserSnapshot.id;
+ 
+  
+  public currentUser: User[];
   public cartItems: Observable<any>;
 
   constructor(
-  private http: HttpClient,
-  private authService: AuthService,
+
+  public authService: AuthService,
   private db: AngularFirestore,
 
   ) {
-    this.cartItems = db.collection(`users/${this.userId}/cart`).valueChanges()
-    
+    this.authService.currentUser.subscribe(user => this.currentUser = user)
+    console.log(this.currentUser)
+
+    this.cartItems = this.authService.currentUser.subscribe.pipe(
+      (user=> this.currentUser=user),
+     db.collection(`users/${this.currentUser}/cart`).valueChanges()
+      )
+  
   }
   
 
   addToCart(product){
-    const cartItemId = product.productId;
+    
 
-    this.db.collection(`users/${this.userId}/cart`).doc(cartItemId).set({
+    this.db.collection(`users/${this.currentUser}/cart`).doc(product.productId).set({
       cartQuantity: 1,
       createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
       imageUrl: product.imageUrl,
-      productId: cartItemId,
+      productId: product.productId,
       productName: product.productName,
       productPrice: product.price,
     })
@@ -43,24 +49,23 @@ export class CartService {
   }
   
   getItem(){
-    return this.items;
+  
   }
 
   clearCart(){
-    this.items = [];
-    return this.items;
+  
   }
   
   getShippingPrices() {
-    return this.http.get('')
+    
   }
 
   addQuantity(cartQuantity: number, productId: string){
-    this.db.collection(`users/${this.userId}/cart`).doc(productId).update({cartQuantity: cartQuantity})
+    this.db.collection(`users/${this.currentUser}/cart`).doc(productId).update({cartQuantity: cartQuantity})
   }
 
   deleteCartItem(productId: string){
-    this.db.collection(`users/${this.userId}/cart`).doc(productId).delete()
+    this.db.collection(`users/${this.currentUser}/cart`).doc(productId).delete()
   }
 
 }

@@ -9,6 +9,7 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { switchMap } from 'rxjs/operators';
 import { from } from 'rxjs'
 import {of} from 'rxjs';
+import { BehaviorSubject} from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,6 @@ export class AuthService {
 
   public currentUser: Observable<User | null>;
   public currentUserSnapshot: User | null; 
-  public userCart: Observable<any>; 
   
   constructor(
     private router: Router,

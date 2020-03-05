@@ -32,7 +32,11 @@ export class ProductDetailsComponent implements OnInit {
       this.response.forEach(element => {
         this.cartItemArray.push({
           cartQuantity: element.cartQuantity,
+          createdAt: element.createdAt,
+          imageUrl: element.imageUrl,
           productId: element.productId,
+          productName: element.productName,
+          productPrice: element.productPrice,
         })
       })
     })
@@ -50,14 +54,16 @@ export class ProductDetailsComponent implements OnInit {
 
   }
 
-  addToCart(product){
-    
-    for(let i =0; i < this.cartItemArray.length; i++){
+  public addToCart(product){
+
+    for(let i = 0; i < this.cartItemArray.length; i++){
       if(this.details.productId === this.cartItemArray[i].productId){
-        this.cartItemArray[i].cartQuantity++
+        this.cartItemArray[i].cartQuantity ++
         this.cartService.addQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
-      }else {
-        this.cartService.addToCart(this.details);
+        break;
+      }else if(i === this.cartItemArray.length-1){
+        this.cartService.addToCart(this.details)
+      
       }
     }
     

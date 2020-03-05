@@ -5,6 +5,7 @@ import { CartService } from '../cart.service';
 import { Cart } from '../interfaces/cart';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { User } from '../interfaces/user';
 
 @Component({
   selector: 'app-cart',
@@ -12,15 +13,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  public currentUser: any = null;
   public items: Observable<any>;
   
-
-
   constructor(
     private cartService: CartService, 
     private formBuilder: FormBuilder,
-    public auth: AuthService,
     private db: AngularFirestore,
   ) {  
  
@@ -31,9 +28,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.auth.currentUser.subscribe( user => {
-      this.currentUser = user;
-    })
+ 
   
   }
   

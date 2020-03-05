@@ -10,18 +10,19 @@ import { CartService } from '../cart.service';
 export class BottomBarComponent implements OnInit {
   public currentUser: any = null;
 
+   
   constructor(
     public auth: AuthService,
-    public cartService: CartService,
+    //public cartService: CartService,
 
   ) {
-    
+      this.auth.currentUser.subscribe( user => {
+      this.currentUser = user;
+      })
   }
 
   ngOnInit() {
-     this.auth.currentUser.subscribe( user => {
-      this.currentUser = user;
-    })
+   
   }
 
 }
