@@ -37,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
         this.loading = isLoading;
       })
     )
+    
   
   }
 

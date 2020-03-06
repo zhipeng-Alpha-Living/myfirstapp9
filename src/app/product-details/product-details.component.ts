@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../services/product.service';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { Cart } from '../interfaces/cart';
@@ -13,10 +13,10 @@ import { Product } from '../classes/product';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-    public productSubscription: Subscription[] = [];
+    private productSubscription: Subscription[] = [];
     public details:any;
-    public cartItemArray: Cart[] = [];
-    public response: any;
+    private cartItemArray: Cart[] = [];
+    private response: any;
 
   constructor( 
     private route: ActivatedRoute,
@@ -40,6 +40,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         })
       })
     })
+    
+    
   }
 
   ngOnInit(){
@@ -50,10 +52,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         }
       )
     )
-  
-
   }
 
+  
   public addToCart(product){
 
     for(let i = 0; i < this.cartItemArray.length; i++){
@@ -70,8 +71,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     window.alert('Your product has been added to the cart!');
   }
 
-    ngOnDestroy() {
-    this.productSubscription.forEach( sub => sub.unsubscribe());
-    }
+  
+  ngOnDestroy() {
+  this.productSubscription.forEach( sub => sub.unsubscribe());
+  }
 
 }

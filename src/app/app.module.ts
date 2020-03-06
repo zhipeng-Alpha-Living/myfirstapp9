@@ -20,7 +20,7 @@ import { AlertService } from './services/alert.service';
 import { LoadingService } from './services/loading.service';
 import { AuthService } from './services/auth.service';
 import { ChatroomService } from './services/chatroom.service';
-import { CartService } from './cart.service';
+import { CartService } from './services/cart.service';
 import { ProductService } from './services/product.service';
 import { PaymentService } from './services/payment.service';
 

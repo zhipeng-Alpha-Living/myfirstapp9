@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { CartService } from '../cart.service';
+import { CartService } from '../services/cart.service';
 import { Cart } from '../interfaces/cart';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
@@ -15,22 +15,23 @@ import { Subscription } from 'rxjs';
 })
 export class CartComponent implements OnInit {
   public items: Observable<any>;
-  public cartSubscription: Subscription[] = [];
+  private cartSubscription: Subscription[] = [];
 
   constructor(
     private cartService: CartService, 
     private formBuilder: FormBuilder,
     private db: AngularFirestore,
   ) {  
- 
-    this.cartService.cartItems.subscribe(items =>{
+    this.cartSubscription.push(
+      this.cartService.cartItems.subscribe(items =>{
       this.items = items;
     })
-
+    )
+    
   }
 
   ngOnInit() {
- 
+     
   
   }
   
