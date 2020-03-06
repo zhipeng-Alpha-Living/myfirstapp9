@@ -52,7 +52,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         }
       )
     )
-  }
+  } 
 
   
   public addToCart(product){
