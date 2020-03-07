@@ -24,24 +24,26 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     public productService: ProductService,
     public authService: AuthService,
   ) { 
-    this.productService.selectedProduct.subscribe(dtl => {
-      this.details = dtl;
+    this.productSubscription.push(
+      this.productService.selectedProduct.subscribe(dtl => {
+        this.details = dtl;
       })
-
-    this.cartService.cartItems.subscribe(tempItem => { this.response = tempItem;
-      this.response.forEach(element => {
-        this.cartItemArray.push({
-          cartQuantity: element.cartQuantity,
-          createdAt: element.createdAt,
-          imageUrl: element.imageUrl,
-          productId: element.productId,
-          productName: element.productName,
-          productPrice: element.productPrice,
+    )
+    this.productSubscription.push( 
+      this.cartService.cartItems.subscribe(tempItem => { this.response = tempItem;
+        this.response.forEach(element => {
+          this.cartItemArray.push({
+            cartQuantity: element.cartQuantity,
+            createdAt: element.createdAt,
+            imageUrl: element.imageUrl,
+            productId: element.productId,
+            productName: element.productName,
+            productPrice: element.productPrice,
+          })
         })
       })
-    })
-    
-    
+    )  
+
   }
 
   ngOnInit(){

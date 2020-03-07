@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Cart } from '../imterfaces/cart';
 
+
 @Component({
   selector: 'app-bottom-bar',
   templateUrl: './bottom-bar.component.html',
@@ -12,8 +13,8 @@ import { Cart } from '../imterfaces/cart';
 })
 export class BottomBarComponent implements OnInit {
   public currentUser: User = null;
-  public cartTest: Observable<any>;
- 
+  public cart: Cart[] ;
+
   constructor(
     public auth: AuthService,
     public cartService: CartService,
@@ -24,6 +25,11 @@ export class BottomBarComponent implements OnInit {
       cartService.selectedCart.next(user.id);
     })
     
+    
+    this.cartService.cartItems.subscribe(cartItems => { 
+     this.cart = cartItems
+    })
+
     
 
   }

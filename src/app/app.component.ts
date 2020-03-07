@@ -3,6 +3,8 @@ import { AlertService } from './services/alert.service';
 import { Alert } from './classes/alert';
 import { LoadingService } from './services/loading.service';
 import { Subscription } from 'rxjs';
+import { CartService } from './services/cart.service';
+import { Cart } from 'interfaces/cart';
 
 @Component({
   selector: 'app-root',
@@ -11,17 +13,17 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
  
-  title: any;
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
   public loading: boolean = false;
 
+
   constructor(
     private alertService: AlertService,
     private loadingService: LoadingService,
+    private cartService: CartService,
 
     ){
-
     
   }
 
@@ -38,6 +40,10 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     )
 
+  
+    
+
+   
     
   
   }
@@ -49,9 +55,3 @@ export class AppComponent implements OnInit, OnDestroy {
 
 }
 
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

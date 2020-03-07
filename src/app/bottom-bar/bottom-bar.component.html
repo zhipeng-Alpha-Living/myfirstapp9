@@ -12,7 +12,7 @@
     <button class="cart-button" [routerLink]="['/cart']">
       <a class="fa fa-shopping-cart" aria-hidden="true">
         <span class="fa fa-circle" id="cart-circle"></span>
-        <span class="cart-num"></span>
+        <span class="cart-num">{{c.cartQuantity}}</span>
       </a>
     </button>
 
@@ -30,3 +30,8 @@
       </a>
     </button>
 </div>
+
+
+  <script *ngFor = " let c of cart">
+      
+  </script>
