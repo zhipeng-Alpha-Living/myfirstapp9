@@ -1,5 +1,6 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="button-bar">
     <button class="chat-button" routerLink="../chat">
@@ -12,7 +13,7 @@
     <button class="cart-button" [routerLink]="['/cart']">
       <a class="fa fa-shopping-cart" aria-hidden="true">
         <span class="fa fa-circle" id="cart-circle"></span>
-        <span class="cart-num">{{c.cartQuantity}}</span>
+        <span class="cart-num" *ngFor = " let c of cart"></span>
       </a>
     </button>
 
@@ -31,7 +32,3 @@
     </button>
 </div>
 
-
-  <script *ngFor = " let c of cart">
-      
-  </script>
