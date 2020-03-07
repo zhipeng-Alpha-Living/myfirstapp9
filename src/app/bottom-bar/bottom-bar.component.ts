@@ -27,9 +27,12 @@ export class BottomBarComponent implements OnInit, OnDestroy {
       cartService.selectedCart.next(user.id);
     })
     
-   
-
-    //console.log(this.cart)
+    this.bottomSubscription.push(
+        this.cartService.cartItems.subscribe(cartItems =>{this.response =cartItems;
+          console.log(this.response)
+        })
+      
+    )
 
   }
 
