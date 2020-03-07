@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { Observable, BehaviorSubject, of } from 'rxjs';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './bottom-bar.component.html',
   styleUrls: ['./bottom-bar.component.scss']
 })
-export class BottomBarComponent implements OnInit {
+export class BottomBarComponent implements OnInit, OnDestroy {
   public currentUser: User = null;
   public cart: Cart[] = [];
   private response: any;  
@@ -27,21 +27,7 @@ export class BottomBarComponent implements OnInit {
       cartService.selectedCart.next(user.id);
     })
     
-    
-     this.bottomSubscription.push( 
-      this.cartService.cartItems.subscribe(tempItem => { this.response = tempItem;
-        this.response.forEach(element => {
-          this.cart.push({
-            cartQuantity: element.cartQuantity,
-            createdAt: element.createdAt,
-            imageUrl: element.imageUrl,
-            productId: element.productId,
-            productName: element.productName,
-            productPrice: element.productPrice,
-          })
-        })
-      })
-    )  
+   
 
     //console.log(this.cart)
 
@@ -49,11 +35,11 @@ export class BottomBarComponent implements OnInit {
 
 
   ngOnInit(){
- 
-
-  }
-
   
+  }
+  ngOnDestroy() {
+    this.bottomSubscription.forEach( sub => sub.unsubscribe());
+  }
 
 }
 
