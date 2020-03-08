@@ -4,7 +4,7 @@ import { Alert } from './classes/alert';
 import { LoadingService } from './services/loading.service';
 import { Subscription } from 'rxjs';
 import { CartService } from './services/cart.service';
-import { Cart } from 'interfaces/cart';
+import { Cart } from './interfaces/cart';
 
 @Component({
   selector: 'app-root',

@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../interfaces/user';
-import { Cart } from '../imterfaces/cart';
+import { Cart } from '../interfaces/cart';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -28,8 +28,19 @@ export class BottomBarComponent implements OnInit, OnDestroy {
     })
     
     this.bottomSubscription.push(
-        this.cartService.cartItems.subscribe(cartItems =>{this.response =cartItems;
+        this.cartService.cartItems.subscribe(cartItems =>{
+          this.response =cartItems;
           console.log(this.response)
+          this.response.forEach(element => {
+          this.cart.push({
+            cartQuantity: element.cartQuantity,
+            createdAt: element.createdAt,
+            imageUrl: element.imageUrl,
+            productId: element.productId,
+            productName: element.productName,
+            productPrice: element.productPrice,
+          })
+        })
         })
       
     )
