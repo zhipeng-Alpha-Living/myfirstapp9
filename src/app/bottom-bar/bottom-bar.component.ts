@@ -16,18 +16,18 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   public cart: Cart[] = [];
   private response: Cart[] = [];  
   private bottomSubscription: Subscription[] = [];
+  public cartArray: Cart[] = [];
 
   constructor(
     public auth: AuthService,
     public cartService: CartService,
-
   ) {
     this.auth.currentUser.subscribe( user => {
-      this.currentUser = user,
+      this.currentUser = user
       cartService.selectedCart.next(user.id);
     })
     
-
+    
   }
 
 
@@ -36,18 +36,35 @@ export class BottomBarComponent implements OnInit, OnDestroy {
       this.cartService.cartItems.subscribe(cartItems => {
        //this.cart = cartItems
         Object.assign(this.response,cartItems)
-          console.log(this.response[0])
+          this.takeValue(this.response)
+          //console.log(this.response[0])
       })
     )
 
-    console.log(this.response[0]);
-
+    this.cart.forEach(any => {
+      this.cartArray.push({
+        cartQuantity: any.cartQuantity,
+        createdAt: any.createdAt,
+        imageUrl: any.imageUrl,
+        productId: any.productId,
+        productName: any.productName,
+        productPrice: any.productPrice,
+      })
+    })
     
-  }
+    
 
+  } 
+
+  public takeValue(value: Cart[]){
+    console.log(value[0])
+    this.cart = value
+    
+  } 
+    
   ngOnDestroy() {
     this.bottomSubscription.forEach( sub => sub.unsubscribe());
-  }
+  } 
 
 }
 

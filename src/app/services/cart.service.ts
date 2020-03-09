@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { switchMap,  } from 'rxjs/operators';
 import * as firebase from 'firebase';
-import { Cart } from '../interfaces/cart';
+import { Cart } from '../classes/cart';
 import { User } from '../interfaces/user';
 import { Subscription } from 'rxjs';
 

@@ -54,6 +54,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         }
       )
     )
+
+    
+   
   } 
 
   
@@ -61,7 +64,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
     for(let i = 0; i < this.cartItemArray.length; i++){
       if(this.details.productId === this.cartItemArray[i].productId){
-        console.log(this.cartItemArray[i].cartQuantity)
         this.cartItemArray[i].cartQuantity ++
         this.cartService.addQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
         break;
