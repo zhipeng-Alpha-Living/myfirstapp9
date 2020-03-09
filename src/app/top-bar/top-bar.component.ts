@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
+
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
@@ -17,7 +18,7 @@ export class TopBarComponent implements OnInit {
 
   ngOnInit() {
     this.auth.currentUser.subscribe( user => {
-      this.currentUser = user;
+      this.currentUser = user
     })
   }
 

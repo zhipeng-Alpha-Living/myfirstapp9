@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class BottomBarComponent implements OnInit, OnDestroy {
   public currentUser: User = null;
   public cart: Cart[] = [];
-  private response: any;  
+  private response: Cart[] = [];  
   private bottomSubscription: Subscription[] = [];
 
   constructor(
@@ -27,30 +27,24 @@ export class BottomBarComponent implements OnInit, OnDestroy {
       cartService.selectedCart.next(user.id);
     })
     
-    this.bottomSubscription.push(
-        this.cartService.cartItems.subscribe(cartItems =>{
-          this.response =cartItems;
-          console.log(this.response)
-          this.response.forEach(element => {
-          this.cart.push({
-            cartQuantity: element.cartQuantity,
-            createdAt: element.createdAt,
-            imageUrl: element.imageUrl,
-            productId: element.productId,
-            productName: element.productName,
-            productPrice: element.productPrice,
-          })
-        })
-        })
-      
-    )
 
   }
 
 
   ngOnInit(){
-  
+    this.bottomSubscription.push(
+      this.cartService.cartItems.subscribe(cartItems => {
+       //this.cart = cartItems
+        Object.assign(this.response,cartItems)
+          console.log(this.response[0])
+      })
+    )
+
+    console.log(this.response[0]);
+
+    
   }
+
   ngOnDestroy() {
     this.bottomSubscription.forEach( sub => sub.unsubscribe());
   }

@@ -15,8 +15,8 @@ import { Subscription } from 'rxjs';
 export class CartService {
   private CurrentUser: User = null;
   private subscriptions: Subscription[] = [];
-  public cartItems: Observable<any>;
-  public selectedCart: BehaviorSubject<string | null> = new BehaviorSubject(null);
+  public cartItems: Observable<Cart[]>;
+  public selectedCart: BehaviorSubject<Cart[] | null> = new BehaviorSubject(null);
 
   constructor(
   
