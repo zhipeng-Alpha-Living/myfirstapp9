@@ -11,15 +11,13 @@ import { AngularFirestore} from 'angularfire2/firestore';
 })
 export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChecked {
 
-  @ViewChild('scrollContainer') private scrollContainer: ElementRef;
+  @ViewChild('scrollContainer', { static: false }) private scrollContainer: ElementRef;
 
   public subscriptions: Subscription[] = [];
   public chatroom: any;
   public messages: any;
 
 
-  //TODO replace with Firebase data
- 
   constructor(
     private route: ActivatedRoute,
     public chatroomService: ChatroomService,

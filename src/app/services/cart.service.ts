@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { switchMap,  } from 'rxjs/operators';
 import * as firebase from 'firebase';
-import { Cart } from '../classes/cart';
+import { Cart } from '../interfaces/cart';
 import { User } from '../interfaces/user';
 import { Subscription } from 'rxjs';
 
@@ -15,8 +15,10 @@ import { Subscription } from 'rxjs';
 export class CartService {
   private CurrentUser: User = null;
   private subscriptions: Subscription[] = [];
-  public cartItems: Observable<Cart[]>;
-  public selectedCart: BehaviorSubject<Cart[] | null> = new BehaviorSubject(null);
+  public cartItems: Observable<any>;
+  public selectedCart: BehaviorSubject<string | null> = new BehaviorSubject(null);
+  public allcart: Observable<any>;
+  public quantity: Observable<number>;
 
   constructor(
   
@@ -34,8 +36,17 @@ export class CartService {
       return of(null);
     }))
      
-    
-  
+    this.allcart = this.selectedCart.pipe(switchMap(userId => {
+      if(userId){
+        return db.collection(`users/${userId}/cart`).get().toPromise().then(function(querySnapshot){
+          querySnapshot.forEach(function(doc){
+            
+          })
+        })
+      }
+      return of(null);
+    }))
+
   }
   
 

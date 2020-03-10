@@ -1,28 +1,24 @@
 <div class="cart-container">
   <div class="page-container">
-  <h3>Cart</h3>
-
-  <p>
-    <a routerLink="/shipping">Shipping Prices</a>
-  </p>
-
-  <div class="cart-item-container" *ngFor="let item of items">
-    <span><div class="img-container"><img [src]="item.imageUrl"></div></span>
-    <span>
-      <div class="details-container" >
-        <p>{{item.productName}}</p>
-        <div>
-          <a class="cartPrice-container">RM{{item.productPrice}}</a>
-          <div class="cartQuantity-container">
-            <button class="reduce-button" (click)="deductQuantity(item.cartQuantity, item.productId)"><i class="material-icons">remove</i></button>
-            <a>{{item.cartQuantity}}</a>
-            <button class="add-button" (click)="addQuantity(item.cartQuantity, item.productId)"><i class="material-icons">add</i></button>
+    <h3>Cart</h3>
+    <p>
+      <a routerLink="/shipping">Shipping Prices</a>
+    </p>
+    <div class="cart-item-container" *ngFor="let item of items">
+      <span><div class="img-container"><img [src]="item.imageUrl"></div></span>
+      <span>
+        <div class="details-container" >
+          <p>{{item.productName}}</p>
+          <div>
+            <a class="cartPrice-container">RM{{item.productPrice}}</a>
+            <div class="cartQuantity-container">
+              <button class="reduce-button" (click)="deductQuantity(item.cartQuantity, item.productId)"><i class="material-icons">remove</i></button>
+              <a>{{item.cartQuantity}}</a>
+              <button class="add-button" (click)="addQuantity(item.cartQuantity, item.productId)"><i class="material-icons">add</i></button>
+            </div>
           </div>
         </div>
-      </div>
-    </span>     
-  </div>
-
-  
+      </span> 
+    </div>  
   </div>
 </div>

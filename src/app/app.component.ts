@@ -1,10 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AlertService } from './services/alert.service';
+import { AuthService } from './services/auth.service';
 import { Alert } from './classes/alert';
 import { LoadingService } from './services/loading.service';
 import { Subscription } from 'rxjs';
 import { CartService } from './services/cart.service';
 import { Cart } from './interfaces/cart';
+import { User } from './interfaces/user';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +18,24 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
   public loading: boolean = false;
+  public items: Cart[] = [];
+  public totalQuantity: number;
+  public currentUser: User = null; 
 
-
+  
   constructor(
     private alertService: AlertService,
     private loadingService: LoadingService,
-    private cartService: CartService,
+    public cartService: CartService,
+    public auth: AuthService,
 
-    ){
-    
+  ){
+    this.subscriptions.push(
+      this.auth.currentUser.subscribe( user => {
+        this.currentUser = user,
+        cartService.selectedCart.next(user.id);
+      })
+    )
   }
 
   ngOnInit() {
@@ -40,12 +51,26 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     )
 
-  
-    
-
    
-    
+
+    this.subscriptions.push(
+      this.cartService.cartItems.subscribe(item =>{
+          this.items = item;
+          console.log(item)
+          var totalQuantity = 0;
+          for(var i =0 ; i < this.items.length; i++){
+            totalQuantity = totalQuantity + this.items[i].cartQuantity
+          }
+          this.takeTotalQuantity(totalQuantity) 
+      })
+    )
+
   
+  }
+
+  public takeTotalQuantity(value: number){
+    this.totalQuantity = value;
+    console.log(this.totalQuantity)
   }
 
   ngOnDestroy() {

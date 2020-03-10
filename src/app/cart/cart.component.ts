@@ -1,9 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+//import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../interfaces/cart';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Subscription } from 'rxjs';
@@ -14,25 +12,31 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  public items: Observable<any>;
+  //public items: Cart[] =[];
   private cartSubscription: Subscription[] = [];
+  //public totalQuantity: number;
 
   constructor(
-    private cartService: CartService, 
-    private formBuilder: FormBuilder,
-    private db: AngularFirestore,
+    private cartService: CartService,
+
   ) {  
-    this.cartSubscription.push(
-      this.cartService.cartItems.subscribe(items =>{
-      this.items = items;
-    })
-    )
     
   }
 
   ngOnInit() {
-     
-  
+
+    /*this.cartSubscription.push(
+      this.cartService.cartItems.subscribe(item =>{
+          this.items = item;
+          var totalQuantity = 0;
+          for(var i =0 ; i < this.items.length; i++){
+            totalQuantity = totalQuantity + this.items[i].cartQuantity
+          }
+          this.takeTotalQuantity(totalQuantity) 
+      })
+    )  */
+    //console.log(this.items)
+
   }
   
   onSubmit(customerData){
@@ -54,7 +58,13 @@ export class CartComponent implements OnInit {
     }
   }
 
+  /*public takeTotalQuantity(value: number){
+    this.totalQuantity = value;
+    console.log(this.totalQuantity)
+  }*/
+
+
   ngOnDestroy() {
     this.cartSubscription.forEach( sub => sub.unsubscribe());
-    }
+  }
 }
