@@ -69,7 +69,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
         break;
       }else if(i === this.cartItemArray.length-1){
         this.cartService.addToCart(this.details)
-      
       }
     }
     

@@ -1,10 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { environment } from '../environments/environment';
+import { AppRoutingModule } from './app-routing.module';
+import { Router } from '@angular/router';
 
 import { AlertModule } from 'ngx-bootstrap';
 import { NgxLoadingModule } from 'ngx-loading';
@@ -60,30 +62,16 @@ import { PaymentComponent } from './payment/payment.component';
       FormsModule,
       CommonModule,
       NgxLoadingModule,
-      AngularFireModule.initializeApp(environment.firebase, 'MyFirstApp'),
+      AngularFireModule.initializeApp(environment.firebase, 'webapp'),
       AngularFireStorageModule,
       AngularFirestoreModule,
       AngularFireAuthModule,
       BrowserAnimationsModule,
+      AppRoutingModule,
       CollapseModule.forRoot(),
       AlertModule.forRoot(),
       RouterModule.forRoot([
          { path: '', component: ProductListComponent },
-         { path: 'products/:productId', component: ProductDetailsComponent },
-         { path: 'cart', component: CartComponent },
-         { path: 'shipping', component: ShippingComponent },
-         { path: 'login', component: LoginComponent},
-         { path: 'signup', component: SignupComponent},
-         { path:'chat', canActivate: [AuthGuard],
-            children : [
-               {path: '', component: ChatComponent},
-               {path: ':chatroomId', component: ChatComponent},
-            ]
-         },
-         { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
-         { path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard]},
-         { path: 'payment', component: PaymentComponent},
-
        ])
    ],
    declarations: [
@@ -127,7 +115,12 @@ import { PaymentComponent } from './payment/payment.component';
       AppComponent
    ],
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(router: Router) {
+    
+
+  }
+}
 
 
 /*

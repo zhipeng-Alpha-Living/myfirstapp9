@@ -6,7 +6,7 @@
         <div class="whole-details-container">
 
               <div class="img-container">
-                <div *ngIf="details.imageUrl" class="img-size">
+                <div *ngIf="details?.imageUrl" class="img-size">
                     <img [src]="details.imageUrl" >
                 </div>
               </div>
@@ -14,9 +14,9 @@
           <div class="outter-details-container">
 
              <div class="details-container">
-                <h2>{{details.productName}}</h2>
+                <h2>{{details?.productName}}</h2>
                 <div>
-                 <a class="product-price">RM{{details.price}}</a>
+                 <a class="product-price">RM{{details?.price}}</a>
                    <div class="review-container" >
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -32,7 +32,7 @@
               <button class="bottom-long-btn" (click)=" calculateTotalQuantity()"  [routerLink]="['/payment']">Buy now</button>
             </div>
             <div class="description-container">
-              <p class="product-description">{{details.description}}</p>
+              <p class="product-description">{{details?.description}}</p>
             </div>
           </div>
 

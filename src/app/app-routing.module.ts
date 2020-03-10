@@ -4,15 +4,32 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from "./signup/signup.component";
 import { ChatComponent } from './chat/chat.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CartComponent } from './cart/cart.component';
+import { ShippingComponent } from './shipping/shipping.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [
-  { path:'', pathMatch: 'full', redirectTo: '/login'},
-  { path:'login', component: LoginComponent},
-  { path:'signup', component: SignupComponent},
-  { path:'chat', canActivate: [AuthGuard]},
-  { path:'**', redirectTo:'/login'},
+  { path: '', component: ProductListComponent },
+  { path: 'products/:productId', component: ProductDetailsComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'shipping', component: ShippingComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupComponent},
+  { path:'chat', canActivate: [AuthGuard],
+      children : [
+        {path: '', component: ChatComponent},
+        {path: ':chatroomId', component: ChatComponent},
+      ]
+  },
+  { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard]},
+  { path: 'payment', component: PaymentComponent},
+
   
 ];
 

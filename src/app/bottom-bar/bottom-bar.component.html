@@ -1,16 +1,20 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <div class="button-bar">
-    <button class="chat-button" routerLink="../chat">
+    <button class="chat-button" routerLink="/chat">
       <a class="fa fa-commenting-o" aria-hidden="true">
         <span class="fa fa-circle" id="chat-circle"></span>
         <span class="chat-num">2</span>
       </a>
     </button>
 
-
+    <button class="cart-button" routerLink="/cart">
+      <a class="fa fa-shopping-cart" aria-hidden="true">
+        <span class="fa fa-circle" id="cart-circle"></span>
+        <span class="cart-num" >{{totalQuantity}}</span>
+      </a>
+    </button>
 
     <button class="notification-button">
       <a class="fa fa-bell-o" aria-hidden="true">
@@ -18,12 +22,12 @@
         <span class="notifi-num">2</span>
       </a>
     </button>
-    
-    <button class="profile-button" [routerLink]="'/profile/'+ currentUser.id">
-      <a class="fa fa-user-o">
-        <span class="fa fa-circle" id="notifi-circle"></span>
-        <span class="notifi-num">2</span>
-      </a>
-    </button>
+
+      <button class="profile-button" [routerLink]="['/profile/', currentUser?.id]">
+        <a class="fa fa-user-o">
+          <span class="fa fa-circle" id="notifi-circle"></span>
+          <span class="notifi-num">2</span>
+        </a>
+      </button>
 </div>
 

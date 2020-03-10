@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  //public items: Cart[] =[];
+  public items: Cart[] =[];
   private cartSubscription: Subscription[] = [];
   //public totalQuantity: number;
 
@@ -25,16 +25,16 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
 
-    /*this.cartSubscription.push(
+    this.cartSubscription.push(
       this.cartService.cartItems.subscribe(item =>{
           this.items = item;
-          var totalQuantity = 0;
+          /*var totalQuantity = 0;
           for(var i =0 ; i < this.items.length; i++){
             totalQuantity = totalQuantity + this.items[i].cartQuantity
           }
-          this.takeTotalQuantity(totalQuantity) 
+          this.takeTotalQuantity(totalQuantity) */
       })
-    )  */
+    )  
     //console.log(this.items)
 
   }
