@@ -38,28 +38,28 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     )
     
-
+    
     this.subscriptions.push(
     
       this.cartService.cartItems.subscribe( item =>{
-          //this.items = [];
-          this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
-          console.log(item)
-          console.log(this.items)
-          var tQuantity = 0;
-          for(var i = 0 ; i <this.items.length; i++){
-            tQuantity = tQuantity + this.items[i].cartQuantity
-          }
-          this.takeTotalQuantity(tQuantity) 
+        //this.items = [];
+        this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
+        console.log(item)
+        console.log(this.items)
+        var tQuantity = 0;
+        for(var i = 0 ; i <this.items.length; i++){
+          tQuantity = tQuantity + this.items[i].cartQuantity
+        }
+        this.takeTotalQuantity(tQuantity) 
       })
     )
   }
 
   ngOnInit() {
     this.subscriptions.push(
-    this.alertService.alerts.subscribe(alert => {
-      this.alerts.push(alert);
-    })
+      this.alertService.alerts.subscribe(alert => {
+        this.alerts.push(alert);
+      })
     )
 
     this.subscriptions.push(
@@ -68,7 +68,7 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     )
 
-  
+
   }
 
   public takeTotalQuantity(value: number){

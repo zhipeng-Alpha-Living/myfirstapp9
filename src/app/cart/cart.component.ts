@@ -19,7 +19,7 @@ export class CartComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartService,
 
-  ) {  
+  ){  
     
   }
 
@@ -30,12 +30,9 @@ export class CartComponent implements OnInit, OnDestroy {
           this.items = item;
       })
     )  
-
-
   }
   
-  onSubmit(customerData){
-
+  onSubmit(){
 
   }
 
@@ -53,7 +50,7 @@ export class CartComponent implements OnInit, OnDestroy {
       this.cartService.updateQuantity(cartQuantity, productId);
     } else if(cartQuantity <= 1){
       --cartQuantity
-      this.cartService.updateQuantity(cartQuantity, productId);
+      //this.cartService.updateQuantity(cartQuantity, productId);
       this.cartService.deleteCartItem(cartQuantity, productId);
     }
   }
