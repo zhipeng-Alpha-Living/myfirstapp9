@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   public items: Cart[] =[];
   private cartSubscription: Subscription[] = [];
-  //public totalQuantity: number;
+  public totalQuantity: number;
 
   constructor(
     private cartService: CartService,
@@ -28,14 +28,9 @@ export class CartComponent implements OnInit {
     this.cartSubscription.push(
       this.cartService.cartItems.subscribe(item =>{
           this.items = item;
-          /*var totalQuantity = 0;
-          for(var i =0 ; i < this.items.length; i++){
-            totalQuantity = totalQuantity + this.items[i].cartQuantity
-          }
-          this.takeTotalQuantity(totalQuantity) */
       })
     )  
-    //console.log(this.items)
+
 
   }
   
@@ -45,6 +40,9 @@ export class CartComponent implements OnInit {
   }
 
   public addQuantity(cartQuantity: number, productId: string){
+
+    //this.totalQuantity = this.cartService.getSelectedItem(productId);
+    //console.log(this.totalQuantity)
     cartQuantity++
     this.cartService.updateQuantity(cartQuantity, productId)
   }
@@ -59,11 +57,6 @@ export class CartComponent implements OnInit {
       this.cartService.deleteCartItem(cartQuantity, productId);
     }
   }
-
-  /*public takeTotalQuantity(value: number){
-    this.totalQuantity = value;
-    console.log(this.totalQuantity)
-  }*/
 
 
   ngOnDestroy() {

@@ -17,7 +17,7 @@ export class CartService {
   private subscriptions: Subscription[] = [];
   public cartItems: Observable<any>;
   public selectedCart: BehaviorSubject<string | null> = new BehaviorSubject(null);
-  public allcart: Observable<any>;
+  public selectedItem: Observable<any>;
 
   constructor(
   
@@ -34,22 +34,27 @@ export class CartService {
       }
       return of(null);
     }))
-     
-    this.allcart = this.selectedCart.pipe(switchMap(userId => {
-      if(userId){
-        return db.collection(`users/${userId}/cart`).get().toPromise().then(function(querySnapshot){
-          querySnapshot.forEach(function(doc){
-            
-          })
-        })
-      }
-      return of(null);
-    }))
+    
 
+  }
+
+  getSelectedItem(productId: string): number {
+    var quantity 
+    this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).get().toPromise().then(
+      doc => {       
+        quantity = doc.get('cartQuantity')
+        console.log(doc.get('cartQuantity'))
+      }
+    )
+     return quantity;
+  }
+
+  getValue(n: number){
+    return n
   }
   
 
-  addToCart(product){
+  addToCart(product):void{
     
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(product.productId).set({
       cartQuantity: 1,
@@ -66,11 +71,11 @@ export class CartService {
   
   }
 
-  public updateQuantity(cartQuantity: number, productId: string){
+  public updateQuantity(cartQuantity: number, productId: string):void{
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).update({cartQuantity: cartQuantity})
   }
 
-  public deleteCartItem(cartQuantity: number, productId: string){
+  public deleteCartItem(cartQuantity: number, productId: string):void{
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
   }
 

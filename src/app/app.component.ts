@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public alerts: Array<Alert> = [];
   public loading: boolean = false;
   public items: Array<Cart> = [];
-  public totalQuantity: number;
+  public totalQuantity: number = 0;
   public currentUser: User = null; 
 
   
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private cartService: CartService,
     public auth: AuthService,
+    
 
   ){
     this.subscriptions.push(
@@ -36,18 +37,20 @@ export class AppComponent implements OnInit, OnDestroy {
         cartService.selectedCart.next(user.id);
       })
     )
-    var me = this;
+    
 
     this.subscriptions.push(
-      me.cartService.cartItems.subscribe( item =>{
-          Object.assign(this.items, item)
+    
+      this.cartService.cartItems.subscribe( item =>{
+          //this.items = [];
+          this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
+          console.log(item)
           console.log(this.items)
-          var totalQuantity = 0;
+          var tQuantity = 0;
           for(var i = 0 ; i <this.items.length; i++){
-            totalQuantity = totalQuantity + this.items[i].cartQuantity
+            tQuantity = tQuantity + this.items[i].cartQuantity
           }
-          this.takeTotalQuantity(totalQuantity) 
-          
+          this.takeTotalQuantity(tQuantity) 
       })
     )
   }
