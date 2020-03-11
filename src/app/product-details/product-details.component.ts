@@ -65,7 +65,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     for(let i = 0; i < this.cartItemArray.length; i++){
       if(this.details.productId === this.cartItemArray[i].productId){
         this.cartItemArray[i].cartQuantity ++
-        this.cartService.addQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
+        this.cartService.updateQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
         break;
       }else if(i === this.cartItemArray.length-1){
         this.cartService.addToCart(this.details)

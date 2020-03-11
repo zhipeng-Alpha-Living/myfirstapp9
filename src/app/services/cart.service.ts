@@ -71,7 +71,6 @@ export class CartService {
   }
 
   public deleteCartItem(cartQuantity: number, productId: string){
-    this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).update({cartQuantity: cartQuantity})
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
   }
 

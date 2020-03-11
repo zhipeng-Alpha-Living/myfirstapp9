@@ -51,10 +51,11 @@ export class CartComponent implements OnInit {
 
   public deductQuantity(cartQuantity: number, productId: string){
     if(cartQuantity > 1){
-      cartQuantity--
+      --cartQuantity
       this.cartService.updateQuantity(cartQuantity, productId);
-    } else if(cartQuantity == 1){
-      cartQuantity--
+    } else if(cartQuantity <= 1){
+      --cartQuantity
+      this.cartService.updateQuantity(cartQuantity, productId);
       this.cartService.deleteCartItem(cartQuantity, productId);
     }
   }

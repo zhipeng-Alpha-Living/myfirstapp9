@@ -43,7 +43,7 @@ export class AppComponent implements OnInit, OnDestroy {
           Object.assign(this.items, item)
           console.log(this.items)
           var totalQuantity = 0;
-          for(var i = 0 ; i < this.items.length; i++){
+          for(var i = 0 ; i <this.items.length; i++){
             totalQuantity = totalQuantity + this.items[i].cartQuantity
           }
           this.takeTotalQuantity(totalQuantity) 
