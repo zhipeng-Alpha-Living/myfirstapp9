@@ -18,7 +18,6 @@ export class CartService {
   public cartItems: Observable<any>;
   public selectedCart: BehaviorSubject<string | null> = new BehaviorSubject(null);
   public allcart: Observable<any>;
-  public quantity: Observable<number>;
 
   constructor(
   
@@ -28,7 +27,7 @@ export class CartService {
   ) {
 
     this.subscriptions.push(this.authService.currentUser.subscribe(user => this.CurrentUser = user) )
-   
+
     this.cartItems = this.selectedCart.pipe(switchMap(userId=> {
       if (userId){
           return db.collection(`users/${userId}/cart`).valueChanges()
@@ -67,11 +66,12 @@ export class CartService {
   
   }
 
-  addQuantity(cartQuantity: number, productId: string){
+  public updateQuantity(cartQuantity: number, productId: string){
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).update({cartQuantity: cartQuantity})
   }
 
-  deleteCartItem(productId: string){
+  public deleteCartItem(cartQuantity: number, productId: string){
+    this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).update({cartQuantity: cartQuantity})
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
   }
 

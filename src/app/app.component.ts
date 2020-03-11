@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
   public loading: boolean = false;
-  public items: Cart[] = [];
+  public items: Array<Cart> = [];
   public totalQuantity: number;
   public currentUser: User = null; 
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private alertService: AlertService,
     private loadingService: LoadingService,
-    public cartService: CartService,
+    private cartService: CartService,
     public auth: AuthService,
 
   ){
@@ -34,6 +34,20 @@ export class AppComponent implements OnInit, OnDestroy {
       this.auth.currentUser.subscribe( user => {
         this.currentUser = user,
         cartService.selectedCart.next(user.id);
+      })
+    )
+    var me = this;
+
+    this.subscriptions.push(
+      me.cartService.cartItems.subscribe( item =>{
+          Object.assign(this.items, item)
+          console.log(this.items)
+          var totalQuantity = 0;
+          for(var i = 0 ; i < this.items.length; i++){
+            totalQuantity = totalQuantity + this.items[i].cartQuantity
+          }
+          this.takeTotalQuantity(totalQuantity) 
+          
       })
     )
   }
@@ -48,20 +62,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.loadingService.isLoading.subscribe(isLoading => {
         this.loading = isLoading;
-      })
-    )
-
-   
-
-    this.subscriptions.push(
-      this.cartService.cartItems.subscribe(item =>{
-          this.items = item;
-          console.log(item)
-          var totalQuantity = 0;
-          for(var i =0 ; i < this.items.length; i++){
-            totalQuantity = totalQuantity + this.items[i].cartQuantity
-          }
-          this.takeTotalQuantity(totalQuantity) 
       })
     )
 
