@@ -47,6 +47,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 import { PaymentComponent } from './payment/payment.component';
+import { BackButtonComponent } from './back-button/back-button.component';
 
 
 
@@ -94,6 +95,7 @@ import { PaymentComponent } from './payment/payment.component';
       EditProfileComponent,
       BottomBarComponent,
       PaymentComponent,
+      BackButtonComponent,
       
    ],
   

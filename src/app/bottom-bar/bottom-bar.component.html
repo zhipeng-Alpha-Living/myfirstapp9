@@ -10,7 +10,7 @@
     </button>
 
     <button class="cart-button" routerLink="/cart">
-      <a class="fa fa-shopping-cart" aria-hidden="true">
+      <a class="fa fa-shopping-cart" aria-hidden="true" *ngIf="totalQuantity else noCartItem">
         <span class="fa fa-circle" id="cart-circle"></span>
         <span class="cart-num" >{{totalQuantity}}</span>
       </a>
@@ -31,3 +31,6 @@
       </button>
 </div>
 
+<ng-template #noCartItem>
+  <a class="fa fa-shopping-cart" aria-hidden="true" ></a>
+</ng-template>
