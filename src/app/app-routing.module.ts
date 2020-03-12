@@ -11,7 +11,7 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { PaymentComponent } from './payment/payment.component';
-
+import { BackButtonComponent } from './back-button/back-button.component';
 
 const routes: Routes = [
   { path: '', component: ProductListComponent },
@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'profile/:userId/edit', component: EditProfileComponent, canActivate: [AuthGuard]},
   { path: 'payment', component: PaymentComponent},
-
+  { path: 'back-button', component: BackButtonComponent}
   
 ];
 

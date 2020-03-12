@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, Subject, of } from 'rxjs';
 import { ProductService } from './product.service';
 import { AuthService } from './auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -17,7 +17,10 @@ export class CartService {
   private subscriptions: Subscription[] = [];
   public cartItems: Observable<any>;
   public selectedCart: BehaviorSubject<string | null> = new BehaviorSubject(null);
-  public selectedItem: Observable<any>;
+  public allItems: Array<Cart> = [];
+  public totalQuantity: Observable<number>;
+  public totalPrice: Observable<number>;
+  public tItemPrice: Observable<number>;
 
   constructor(
   
@@ -32,26 +35,26 @@ export class CartService {
       if (userId){
           return db.collection(`users/${userId}/cart`).valueChanges()
       }
-      return of(null);
-    }))
+      return this.selectedCart.asObservable()
+    }));
     
-
-  }
-
-  getSelectedItem(productId: string): number {
-    var quantity 
-    this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).get().toPromise().then(
-      doc => {       
-        quantity = doc.get('cartQuantity')
-        console.log(doc.get('cartQuantity'))
-      }
+  /*  this.subscriptions.push(
+      this.cartItems.subscribe(item => {
+        this.allItems = Object.assign([], item)
+        var tQuantity = 0;
+        var tPrice = 0;
+        var tItemPrice =0;
+        for(var i = 0 ; i <this.allItems.length; i++){
+          this.totalQuantity = this.totalQuantity + this.allItems[i].cartQuantity;
+          this.tItemPrice = this.allItems[i].cartQuantity * this.allItems[i].productPrice;
+          this.totalPrice = this.totalPrice + this.tItemPrice;
+        }
+                                            
+      })
     )
-     return quantity;
-  }
-
-  getValue(n: number){
-    return n
-  }
+  */
+  
+  }  
   
 
   addToCart(product):void{
@@ -66,7 +69,7 @@ export class CartService {
     })
 
   }
-  
+
   clearCart(){
   
   }
@@ -75,8 +78,17 @@ export class CartService {
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).update({cartQuantity: cartQuantity})
   }
 
-  public deleteCartItem(cartQuantity: number, productId: string):void{
+  public deleteCartItem(productId: string):void{
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
   }
+
+  setTotalQuantity(totalQuantity: Observable<number>){
+   
+  }
+
+  setTotalPrice(totalPrice: number){
+
+  }
+
 
 }

@@ -24,7 +24,6 @@ export class TopBarComponent implements OnInit {
 
    toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed;
-    console.log(this.isCollapsed);
   }  
 
 }

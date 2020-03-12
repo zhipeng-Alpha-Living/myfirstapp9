@@ -1,5 +1,6 @@
 <div class="cart-container">
   <div class="page-container">
+    <app-back-button></app-back-button>
     <h3>Cart</h3>
     <div></div>
     <p>
@@ -24,9 +25,24 @@
 
               <div class="cartPrice-container">RM {{item.productPrice}}.00</div>
 
+              <div class="removeButton" >
+                <a (click)="removeCartItem(item.productId)">
+                  <i class="material-icons" >delete_outline</i>
+                </a>
+              </div>
+
           </div>
         </div>
    
     </div>  
   </div>
+</div>
+<div class="cart-CheckOut-bar">
+  <div class="subtotal-word-container">Subtotal</div>
+  <button class="checkout-button" routerLink="/payment" (click)="0">Checkout</button>
+  <div class="subtotalAndQuantity-container">
+    <div class="tQuantity">{{totalQuantity}} Items</div>
+    <div class="tPrice">RM {{totalPrice}}.00</div>
+  </div>
+    
 </div>

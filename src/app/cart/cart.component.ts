@@ -14,7 +14,9 @@ import { Subscription } from 'rxjs';
 export class CartComponent implements OnInit, OnDestroy {
   public items: Cart[] =[];
   private cartSubscription: Subscription[] = [];
-  public totalQuantity: number;
+  public allItems: Array<Cart> = [];
+  public totalQuantity: number = 0;
+  public totalPrice: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -28,8 +30,20 @@ export class CartComponent implements OnInit, OnDestroy {
     this.cartSubscription.push(
       this.cartService.cartItems.subscribe(item =>{
           this.items = item;
+          this.allItems = Object.assign([], item)
+          var tQuantity = 0;
+          var tPrice = 0;
+          var tItemPrice =0;
+          for(var i = 0 ; i <this.allItems.length; i++){
+            tQuantity = tQuantity + this.allItems[i].cartQuantity;
+            tItemPrice = this.allItems[i].cartQuantity * this.allItems[i].productPrice;
+            tPrice = tPrice + tItemPrice;
+          }
+          this.takeTotalQuantityAndPrice(tQuantity, tPrice)
       })
     )  
+
+    
   }
   
   onSubmit(){
@@ -37,9 +51,6 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   public addQuantity(cartQuantity: number, productId: string){
-
-    //this.totalQuantity = this.cartService.getSelectedItem(productId);
-    //console.log(this.totalQuantity)
     cartQuantity++
     this.cartService.updateQuantity(cartQuantity, productId)
   }
@@ -51,10 +62,18 @@ export class CartComponent implements OnInit, OnDestroy {
     } else if(cartQuantity <= 1){
       --cartQuantity
       //this.cartService.updateQuantity(cartQuantity, productId);
-      this.cartService.deleteCartItem(cartQuantity, productId);
+      this.cartService.deleteCartItem(productId);
     }
   }
 
+  public removeCartItem(productId: string){
+    this.cartService.deleteCartItem(productId);
+  }
+
+  public takeTotalQuantityAndPrice(totalQuantity: number, totalPrice: number){
+    this.totalQuantity = totalQuantity;
+    this.totalPrice = totalPrice;
+  }
 
   ngOnDestroy() {
     this.cartSubscription.forEach( sub => sub.unsubscribe());

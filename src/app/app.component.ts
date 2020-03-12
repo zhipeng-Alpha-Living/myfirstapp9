@@ -44,8 +44,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.cartService.cartItems.subscribe( item =>{
         //this.items = [];
         this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
-        console.log(item)
-        console.log(this.items)
         var tQuantity = 0;
         for(var i = 0 ; i <this.items.length; i++){
           tQuantity = tQuantity + this.items[i].cartQuantity
@@ -73,7 +71,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public takeTotalQuantity(value: number){
     this.totalQuantity = value;
-    console.log(this.totalQuantity)
   }
 
   ngOnDestroy() {
