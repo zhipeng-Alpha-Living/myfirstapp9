@@ -35,6 +35,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
           this.cartItemArray.push({
             cartQuantity: element.cartQuantity,
             createdAt: element.createdAt,
+            hidden: element.hidden,
             imageUrl: element.imageUrl,
             productId: element.productId,
             productName: element.productName,
@@ -64,7 +65,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
     for(let i = 0; i < this.cartItemArray.length; i++){
       if(this.details.productId === this.cartItemArray[i].productId){
-        this.cartItemArray[i].cartQuantity ++
+        this.cartItemArray[i].cartQuantity ++;
+        this.cartItemArray[i].hidden = false;
+        this.cartService.updateHiddenFlag(this.cartItemArray[i].hidden, this.cartItemArray[i].productId)
         this.cartService.updateQuantity(this.cartItemArray[i].cartQuantity, this.cartItemArray[i].productId)
         break;
       }else if(i === this.cartItemArray.length-1){

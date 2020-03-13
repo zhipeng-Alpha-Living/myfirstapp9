@@ -1,6 +1,11 @@
 @import "../../../../variables.scss";
 
 .new-message-wrapper {
+
+  position: fixed;
+  bottom: 44px;
+  width: 100%;
+
     .input-group {
         align-self: flex-end;
 
@@ -15,4 +20,5 @@
             }
         }
     }
+  
 }

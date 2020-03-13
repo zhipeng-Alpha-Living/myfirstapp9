@@ -2,47 +2,53 @@
   <div class="page-container">
     <app-back-button></app-back-button>
     <h3>Cart</h3>
-    <div></div>
     <p>
       <a routerLink="/shipping">Shipping Prices</a>
     </p>
-    <div class="cart-item-container" *ngFor="let item of items">
-      <div class="img-container"><img [src]="item.imageUrl"></div>
-     
-        <div class="details-container" >
-          <p>{{item.productName}}</p>
-          <div class="priceAndQuantityContainer">
-              
-              <div class="cartQuantity-container">
-                <button class="reduce-button" (click)="deductQuantity(item.cartQuantity, item.productId)">
-                  <i class="material-icons">remove</i>
-                </button>
-                  <a>{{item.cartQuantity}}</a>
-                <button class="add-button" (click)="addQuantity(item.cartQuantity, item.productId)">
-                  <i class="material-icons">add</i>
-                </button>
-              </div>
 
-              <div class="cartPrice-container">RM {{item.productPrice}}.00</div>
+    <ng-container *ngFor="let item of items">
 
-              <div class="removeButton" >
-                <a (click)="removeCartItem(item.productId)">
-                  <i class="material-icons" >delete_outline</i>
-                </a>
-              </div>
+      <div class="cart-item-container" *ngIf="!item.hidden else hideCart">
+          <div class="img-container"><img [src]="item.imageUrl" [routerLink]="['/products', item.productId]"></div>
+            <div class="details-container" >
+              <p [routerLink]="['/products', item.productId]">{{item.productName}}</p>
+                <div class="priceAndQuantityContainer">
 
-          </div>
-        </div>
-   
-    </div>  
+                    <div class="cartQuantity-container">
+                      <button class="reduce-button" (click)="deductQuantity(item.cartQuantity, item.productId, item.hidden)">
+                        <i class="material-icons">remove</i>
+                      </button>
+                        <a>{{item.cartQuantity}}</a>
+                      <button class="add-button" (click)="addQuantity(item.cartQuantity, item.productId)">
+                        <i class="material-icons">add</i>
+                      </button>
+                    </div>
+
+                    <div class="cartPrice-container">RM {{item.productPrice}}.00</div>
+
+                    <div class="removeButton" >
+                      <a (click)="removeCartItem(item.cartQuantity, item.productId, item.hidden)">
+                        <i class="material-icons" >delete_outline</i>
+                      </a>
+                    </div>
+
+                </div>
+            </div>
+      </div>
+
+    </ng-container>  
   </div>
 </div>
+
 <div class="cart-CheckOut-bar">
   <div class="subtotal-word-container">Subtotal</div>
   <button class="checkout-button" routerLink="/payment" (click)="0">Checkout</button>
   <div class="subtotalAndQuantity-container">
     <div class="tQuantity">{{totalQuantity}} Items</div>
     <div class="tPrice">RM {{totalPrice}}.00</div>
-  </div>
-    
+  </div>  
 </div>
+
+<ng-template #hideCart>
+  
+</ng-template>

@@ -46,28 +46,35 @@ export class CartComponent implements OnInit, OnDestroy {
     
   }
   
-  onSubmit(){
-
-  }
 
   public addQuantity(cartQuantity: number, productId: string){
     cartQuantity++
     this.cartService.updateQuantity(cartQuantity, productId)
   }
 
-  public deductQuantity(cartQuantity: number, productId: string){
-    if(cartQuantity > 1){
+  public deductQuantity(cartQuantity: number, productId: string, hidden: boolean){
+    if(cartQuantity > 1 && this.allItems.length >= 1){
       --cartQuantity
       this.cartService.updateQuantity(cartQuantity, productId);
-    } else if(cartQuantity <= 1){
-      --cartQuantity
-      //this.cartService.updateQuantity(cartQuantity, productId);
+    } else if(cartQuantity <= 1 && this.allItems.length > 1){
       this.cartService.deleteCartItem(productId);
+    } else if(cartQuantity <= 1 && this.allItems.length == 1){
+      cartQuantity = 0;
+      this.cartService.updateQuantity(cartQuantity, productId);
+      hidden = true;
+      this.cartService.updateHiddenFlag(hidden, productId)
     }
   }
 
-  public removeCartItem(productId: string){
-    this.cartService.deleteCartItem(productId);
+  public removeCartItem(cartQuantity: number, productId: string, hidden: boolean){
+    if(this.allItems.length > 1){
+      this.cartService.deleteCartItem(productId);
+    } else if( this.allItems.length == 1){
+      cartQuantity = 0;
+      this.cartService.updateQuantity(cartQuantity, productId);
+      hidden = true;
+      this.cartService.updateHiddenFlag(hidden, productId)
+    }
   }
 
   public takeTotalQuantityAndPrice(totalQuantity: number, totalPrice: number){

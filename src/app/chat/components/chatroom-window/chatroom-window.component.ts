@@ -45,7 +45,7 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
     this.subscriptions.push(
       this.route.paramMap.subscribe(params => {
         const chatroomId = params.get('chatroomId');
-          this.chatroomService.changeChatroom.next(chatroomId);
+          this.chatroomService.changeChatroom.next("mQluTbumTqUKznBUoiJCY4q9NXs2");
       })
     );
   }
