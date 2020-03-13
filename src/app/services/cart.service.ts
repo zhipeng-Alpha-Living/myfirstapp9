@@ -31,7 +31,7 @@ export class CartService {
       if (userId){
           return db.collection(`users/${userId}/cart`).valueChanges()
       }
-      return this.selectedCart.asObservable()
+      return of(null)
     }));
   
   } 
@@ -66,6 +66,5 @@ export class CartService {
   public deleteCartItem(productId: string):void{
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
   }
-
 
 }

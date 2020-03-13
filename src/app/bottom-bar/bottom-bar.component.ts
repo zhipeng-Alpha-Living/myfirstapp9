@@ -23,8 +23,7 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   ) {
     this.bottomSubscription.push(
       this.auth.currentUser.subscribe( user => {
-        this.currentUser = user,
-        cartService.selectedCart.next(user.id);
+        this.currentUser = user
       })
     )
     

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-//import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../interfaces/cart';
 import { Observable } from 'rxjs';
@@ -17,11 +17,16 @@ export class CartComponent implements OnInit, OnDestroy {
   public allItems: Array<Cart> = [];
   public totalQuantity: number = 0;
   public totalPrice: number = 0;
+  public user: User = null;
 
   constructor(
     private cartService: CartService,
+    public authService: AuthService,
 
   ){  
+    this.cartSubscription.push(
+      this.authService.currentUser.subscribe(user => this.user = user)
+    )
     
   }
 
@@ -41,8 +46,9 @@ export class CartComponent implements OnInit, OnDestroy {
           }
           this.takeTotalQuantityAndPrice(tQuantity, tPrice)
       })
-    )  
+    )
 
+ 
     
   }
   

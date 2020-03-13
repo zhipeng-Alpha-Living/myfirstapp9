@@ -5,7 +5,7 @@
     <p>
       <a routerLink="/shipping">Shipping Prices</a>
     </p>
-
+    <ng-container *ngIf="user">
     <ng-container *ngFor="let item of items">
 
       <div class="cart-item-container" *ngIf="!item.hidden else hideCart">
@@ -34,12 +34,14 @@
 
                 </div>
             </div>
-      </div>
+      </div> 
 
     </ng-container>  
+    </ng-container>
   </div>
 </div>
 
+<ng-container *ngIf="user">
 <div class="cart-CheckOut-bar">
   <div class="subtotal-word-container">Subtotal</div>
   <button class="checkout-button" routerLink="/payment" (click)="0">Checkout</button>
@@ -48,6 +50,7 @@
     <div class="tPrice">RM {{totalPrice}}.00</div>
   </div>  
 </div>
+</ng-container>
 
 <ng-template #hideCart>
   
