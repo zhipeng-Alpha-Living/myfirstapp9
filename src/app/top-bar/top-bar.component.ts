@@ -21,18 +21,21 @@ export class TopBarComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.topSubscription.push(
     this.auth.currentUser.subscribe( user => {
       this.currentUser = user
     })
+    )
   }
 
    toggleCollapsed() {
     this.isCollapsed = !this.isCollapsed;
   }  
   
-  ngOnDestroy(){
+  ngOnDestroy(){ 
+    
     this.topSubscription.forEach( sub => sub.unsubscribe());
-  
+   
   }
 
 

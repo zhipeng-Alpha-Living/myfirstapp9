@@ -18,8 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
   public loading: boolean = false;
-  public items: Array<Cart> = [];
-  public totalQuantity: number = 0;
+  //public items: Array<Cart> = [];
+  //public totalQuantity: number = 0;
   public currentUser: User = null; 
 
   
@@ -35,11 +35,12 @@ export class AppComponent implements OnInit, OnDestroy {
       this.auth.currentUser.subscribe( user => {
         this.currentUser = user,
         cartService.selectedCart.next(user.id);
+        console.log(user.id)
       })
     )
     
     
-    this.subscriptions.push(
+    /*this.subscriptions.push(
     
       this.cartService.cartItems.subscribe( item =>{
         //this.items = [];
@@ -48,10 +49,11 @@ export class AppComponent implements OnInit, OnDestroy {
         for(var i = 0 ; i <this.items.length; i++){
           tQuantity = tQuantity + this.items[i].cartQuantity
         }
+        console.log(tQuantity)
         this.takeTotalQuantity(tQuantity) 
       })
-    )
-  }
+   )*/ 
+  } 
 
   ngOnInit() {
     this.subscriptions.push(
@@ -66,12 +68,13 @@ export class AppComponent implements OnInit, OnDestroy {
       })
     )
 
+    
 
   }
 
-  public takeTotalQuantity(value: number){
+  /*public takeTotalQuantity(value: number){
     this.totalQuantity = value;
-  }
+  }*/
 
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());

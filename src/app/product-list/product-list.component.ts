@@ -10,6 +10,7 @@ import { CartService } from '../services/cart.service';
 export class ProductListComponent implements OnInit {
     constructor(
       public productService: ProductService,
+      public cartService: CartService
     ) { }
 
   share() {

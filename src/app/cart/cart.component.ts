@@ -24,8 +24,13 @@ export class CartComponent implements OnInit, OnDestroy {
     public authService: AuthService,
 
   ){  
+   
     this.cartSubscription.push(
-      this.authService.currentUser.subscribe(user => this.user = user)
+      this.authService.currentUser.subscribe( user => {
+        this.user = user,
+        this.cartService.selectedCart.next(user.id);
+        }
+      )
     )
     
   }
@@ -90,6 +95,9 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.cartSubscription.forEach( sub => sub.unsubscribe());
+    this.totalQuantity = null;
+    this.totalPrice = null;
+    this.user = null;
   }
 
   

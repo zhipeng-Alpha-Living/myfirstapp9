@@ -16,7 +16,7 @@ import { BackButtonComponent } from './back-button/back-button.component';
 const routes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'products/:productId', component: ProductDetailsComponent},
-  { path: 'cart', component: CartComponent},
+  { path: 'cart', component: CartComponent,canActivate:[AuthGuard]},
   { path: 'shipping', component: ShippingComponent },
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},

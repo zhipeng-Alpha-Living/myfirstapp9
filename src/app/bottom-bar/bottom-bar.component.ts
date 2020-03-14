@@ -1,10 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
-import { Observable, BehaviorSubject, of } from 'rxjs';
 import { User } from '../interfaces/user';
-//import { Cart } from '../interfaces/cart';
 import { Subscription } from 'rxjs';
+import{ Cart } from '../interfaces/cart';
 
 
 @Component({
@@ -15,30 +14,49 @@ import { Subscription } from 'rxjs';
 export class BottomBarComponent implements OnInit, OnDestroy {
   public currentUser: User = null; 
   private bottomSubscription: Subscription[] = [];
-  
-  @Input() totalQuantity: number;
+  public items: Array<Cart> = [];
+  public totalQuantity: number = 0;
+
+  //@Input() totalQuantity: number;
   constructor(
     public auth: AuthService,
     public cartService: CartService,
   ) {
     this.bottomSubscription.push(
       this.auth.currentUser.subscribe( user => {
-        this.currentUser = user
+        this.currentUser = user//,
+        //this.cartService.selectedCart.next(user.id);
       })
-    )
-    
+    ) 
 
   }
 
 
   ngOnInit(){
+    
 
+    this.bottomSubscription.push(
+       this.cartService.cartItems.subscribe( item =>{
+        //this.items = [];
+        this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
+        var tQuantity = 0;
+        for(var i = 0 ; i <this.items.length; i++){
+          tQuantity = tQuantity + this.items[i].cartQuantity
+        }
+        console.log(tQuantity)
+        this.takeTotalQuantity(tQuantity) 
+      })
+    )
   } 
 
 
-    
+  public takeTotalQuantity(value: number){
+    this.totalQuantity = value;
+  } 
+
   ngOnDestroy() {
     this.bottomSubscription.forEach( sub => sub.unsubscribe());
+    this.currentUser = null;
   } 
 
 }
