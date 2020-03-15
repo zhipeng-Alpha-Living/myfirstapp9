@@ -1,16 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
+import{ Cart } from '../interfaces/cart';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
+    private productListSubscription: Subscription[] = [];
+    public items: Array<Cart> = [];
+    public totalQuantity: number = 0;
+    public currentUser: User = null; 
+
     constructor(
       public productService: ProductService,
-      public cartService: CartService
+      public cartService: CartService,
+      public auth: AuthService,
     ) { }
 
   share() {
@@ -21,7 +30,36 @@ export class ProductListComponent implements OnInit {
     window.alert('You will be notified when the product goes on sale');
   }
 
-   ngOnInit(): void {
+  ngOnInit(): void {
+    this.productListSubscription.push(
+      this.auth.currentUser.subscribe( user => {
+        this.currentUser = user,
+        this.cartService.selectedCart.next(user.id);
+      })
+    ) 
+
+    this.productListSubscription.push(
+       this.cartService.cartItems.subscribe( item =>{
+        //this.items = [];
+        this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
+        var tQuantity = 0;
+        for(var i = 0 ; i <this.items.length; i++){
+          tQuantity = tQuantity + this.items[i].cartQuantity
+        }
+        console.log(tQuantity)
+        this.takeTotalQuantity(tQuantity) 
+        this.cartService.setTotalQuantity(tQuantity)
+      })
+    )
+  }
+
+  public takeTotalQuantity(value: number){
+    this.totalQuantity = value;
+  } 
+
+
+  ngOnDestroy(){
+    this.productListSubscription.forEach( sub => sub.unsubscribe());
   }
 }
 

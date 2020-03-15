@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../interfaces/cart';
-import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Subscription } from 'rxjs';
 

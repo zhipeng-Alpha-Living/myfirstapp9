@@ -17,10 +17,12 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   public items: Array<Cart> = [];
   public totalQuantity: number = 0;
 
+
   //@Input() totalQuantity: number;
   constructor(
     public auth: AuthService,
     public cartService: CartService,
+    
   ) {
     this.bottomSubscription.push(
       this.auth.currentUser.subscribe( user => {
@@ -35,7 +37,7 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   ngOnInit(){
     
 
-    this.bottomSubscription.push(
+   /* this.bottomSubscription.push(
        this.cartService.cartItems.subscribe( item =>{
         //this.items = [];
         this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
@@ -46,13 +48,20 @@ export class BottomBarComponent implements OnInit, OnDestroy {
         console.log(tQuantity)
         this.takeTotalQuantity(tQuantity) 
       })
+    )*/
+
+    this.bottomSubscription.push(
+      this.cartService.totalQuantity.subscribe( tQuantity => {
+        this.totalQuantity = tQuantity
+      })
     )
+  
   } 
 
 
-  public takeTotalQuantity(value: number){
+  /*public takeTotalQuantity(value: number){
     this.totalQuantity = value;
-  } 
+  } */
 
   ngOnDestroy() {
     this.bottomSubscription.forEach( sub => sub.unsubscribe());

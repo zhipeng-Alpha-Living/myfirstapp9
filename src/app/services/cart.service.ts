@@ -18,6 +18,7 @@ export class CartService {
   public allItems: Array<Cart> = [];
   private userId: string;
   public initCart:Observable<any>;
+  public totalQuantity: Observable<any>;
 
   constructor(
   
@@ -75,6 +76,10 @@ export class CartService {
 
   public deleteCartItem(productId: string):void{
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
+  }
+
+  setTotalQuantity(totalQuantity){
+    this.totalQuantity = totalQuantity
   }
 
 }
