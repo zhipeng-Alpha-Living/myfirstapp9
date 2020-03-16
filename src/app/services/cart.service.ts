@@ -40,18 +40,9 @@ export class CartService {
         return of(null)
     }));
 
+  
 
-    this.cartItems.subscribe( item => {
-      this.items = Object.assign([], item)
-      var tQuantity = 0 ;
-        for(var i = 0 ; i <this.items.length; i++){
-          tQuantity = tQuantity + this.items[i].cartQuantity
-        }
-      this.setTotalQuantity(tQuantity)
-      
-    })
-
-    this.totalQuantity = this
+    
     
     
   
@@ -68,6 +59,7 @@ export class CartService {
       productId: product.productId,
       productName: product.productName,
       productPrice: product.price,
+      
     })
     
   }
