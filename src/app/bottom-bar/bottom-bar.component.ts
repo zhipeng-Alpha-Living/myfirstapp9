@@ -15,10 +15,10 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   public currentUser: User = null; 
   private bottomSubscription: Subscription[] = [];
   public items: Array<Cart> = [];
-  public totalQuantity: number = 0;
+  //public totalQuantity: number = 10;
 
 
-  //@Input() totalQuantity: number;
+  @Input() totalQuantity: number ;
   constructor(
     public auth: AuthService,
     public cartService: CartService,
@@ -26,46 +26,42 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   ) {
     this.bottomSubscription.push(
       this.auth.currentUser.subscribe( user => {
-        this.currentUser = user//,
-        //this.cartService.selectedCart.next(user.id);
+        this.currentUser = user,
+        this.cartService.selectedCart.next(user.id);
       })
     ) 
 
-  }
-
-
-  ngOnInit(){
+    this.bottomSubscription.push(
+      this.cartService.cartItems.subscribe( item =>{
+      //this.items = [];
+      this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
+      var tQuantity = 0;
+      for(var i = 0 ; i <this.items.length; i++){
+        tQuantity = tQuantity + this.items[i].cartQuantity
+      }
+      console.log(tQuantity)
+      this.takeTotalQuantity(tQuantity) 
+      })
+    ) 
     
 
-   /* this.bottomSubscription.push(
-       this.cartService.cartItems.subscribe( item =>{
-        //this.items = [];
-        this.items = Object.assign([], item)//importance!!! Dont use => Object.assign(this.items, item)
-        var tQuantity = 0;
-        for(var i = 0 ; i <this.items.length; i++){
-          tQuantity = tQuantity + this.items[i].cartQuantity
-        }
-        console.log(tQuantity)
-        this.takeTotalQuantity(tQuantity) 
-      })
-    )*/
+  }
 
-    this.bottomSubscription.push(
-      this.cartService.totalQuantity.subscribe( tQuantity => {
-        this.totalQuantity = tQuantity
-      })
-    )
+  ngOnInit(){
+
+    
+
+  } 
+
   
+  public takeTotalQuantity(value: number){
+    this.totalQuantity = value;
+    console.log(this.totalQuantity)
   } 
 
 
-  /*public takeTotalQuantity(value: number){
-    this.totalQuantity = value;
-  } */
-
   ngOnDestroy() {
     this.bottomSubscription.forEach( sub => sub.unsubscribe());
-    this.currentUser = null;
   } 
 
 }

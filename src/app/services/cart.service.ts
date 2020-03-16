@@ -15,10 +15,10 @@ export class CartService {
   private CurrentUser: User = null;
   public cartItems: Observable<any>;
   public selectedCart: BehaviorSubject<string | null> = new BehaviorSubject(null);
-  public allItems: Array<Cart> = [];
   private userId: string;
   public initCart:Observable<any>;
-  public totalQuantity: Observable<any>;
+  public totalQuantity: Observable<number>;
+  public items: Array<Cart> = []; 
 
   constructor(
   
@@ -27,8 +27,8 @@ export class CartService {
 
   ) {
 
-    this.authService.currentUser.subscribe(user => {this.CurrentUser = user;
-      this.setUserId(this.CurrentUser.id)
+    this.authService.currentUser.subscribe(user => {
+      this.CurrentUser = user;
     }) 
 
     //this.cartItems = this.db.collection(`users/${this.userId}/cart`).valueChanges()
@@ -38,8 +38,22 @@ export class CartService {
         console.log(userId)
       } else
         return of(null)
-    })); 
- 
+    }));
+
+
+    this.cartItems.subscribe( item => {
+      this.items = Object.assign([], item)
+      var tQuantity = 0 ;
+        for(var i = 0 ; i <this.items.length; i++){
+          tQuantity = tQuantity + this.items[i].cartQuantity
+        }
+      this.setTotalQuantity(tQuantity)
+      
+    })
+
+    this.totalQuantity = this
+    
+    
   
   } 
   
@@ -55,15 +69,11 @@ export class CartService {
       productName: product.productName,
       productPrice: product.price,
     })
-
+    
   }
 
   clearCart(){
-  
-  }
-
-  setUserId(userId: string): void{
-    this.userId = userId
+    
   }
 
   public updateQuantity(cartQuantity: number, productId: string):void{
@@ -78,8 +88,15 @@ export class CartService {
     this.db.collection(`users/${this.CurrentUser.id}/cart`).doc(productId).delete()
   }
 
-  setTotalQuantity(totalQuantity){
-    this.totalQuantity = totalQuantity
+  public setTotalQuantity(tQuantity){
+    this.totalQuantity = tQuantity;
+
+    console.log(tQuantity)
   }
 
-}
+  public getTotalQuantity(): Observable<any>{
+    console.log(this.totalQuantity) 
+    return of(this.totalQuantity)
+  } 
+  
+} 

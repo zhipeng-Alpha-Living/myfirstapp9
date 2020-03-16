@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../interfaces/cart';
@@ -18,12 +18,19 @@ export class CartComponent implements OnInit, OnDestroy {
   public totalPrice: number = 0;
   public user: User = null;
 
+  
   constructor(
     private cartService: CartService,
     public authService: AuthService,
 
   ){  
    
+    
+    
+  }
+
+  ngOnInit() {
+
     this.cartSubscription.push(
       this.authService.currentUser.subscribe( user => {
         this.user = user,
@@ -31,10 +38,6 @@ export class CartComponent implements OnInit, OnDestroy {
         }
       )
     )
-    
-  }
-
-  ngOnInit() {
 
     this.cartSubscription.push(
       this.cartService.cartItems.subscribe(item =>{

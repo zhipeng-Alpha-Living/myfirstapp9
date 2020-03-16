@@ -18,8 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   public alerts: Array<Alert> = [];
   public loading: boolean = false;
-  //public items: Array<Cart> = [];
-  //public totalQuantity: number = 0;
+  public items: Array<Cart> = [];
+  public totalQuantity: number = 0;
   public currentUser: User = null; 
 
   
@@ -35,7 +35,6 @@ export class AppComponent implements OnInit, OnDestroy {
       this.auth.currentUser.subscribe( user => {
         this.currentUser = user,
         cartService.selectedCart.next(user.id);
-        console.log(user.id)
       })
     )
     
@@ -52,7 +51,8 @@ export class AppComponent implements OnInit, OnDestroy {
         console.log(tQuantity)
         this.takeTotalQuantity(tQuantity) 
       })
-   )*/ 
+   )*/
+
   } 
 
   ngOnInit() {
@@ -72,9 +72,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   }
 
-  /*public takeTotalQuantity(value: number){
+  public takeTotalQuantity(value: number){
     this.totalQuantity = value;
-  }*/
+  }
 
   ngOnDestroy() {
     this.subscriptions.forEach(sub => sub.unsubscribe());
