@@ -10,7 +10,9 @@ export class ChatMessageComponent implements OnInit {
 
   @Input() message: Message; 
 
-   constructor() { }
+   constructor() { 
+     
+   }
 
   ngOnInit(){
   }    

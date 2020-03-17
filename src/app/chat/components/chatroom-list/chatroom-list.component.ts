@@ -17,4 +17,3 @@ export class ChatroomListComponent implements OnInit {
 
 }
 
-//This no need to touch first, onlt admin need to use this to choose hich user he want to reply

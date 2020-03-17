@@ -1,11 +1,13 @@
 @import '../../../../variables.scss';
 
 .chat-message {
-    padding: 1.5em;
+    padding: 1.5em 0em 1.5em 2em;
     margin: 0.5em;
+    justify-content: right;
+  
 
     .image-wrapper {
-        margin-right: 1em;
+        margin-left: 1em;
         height: 50px;
         width: 50px;
 
@@ -14,18 +16,68 @@
             width: 50px;
         }
     }
+    .timestamp-container{
+      text-align: right;
 
-    .name {
-        text-decoration: underline;
-        font-weight: 600;
-    }
-
-    .timestamp {
-        margin-bottom: 1.5em;
-        color: darken($light-grey, 15%);
+      .timestamp {
+          margin-bottom: 0.2em;
+          padding-left: 2em;
+          color: darken($light-grey, 15%);
+          font-size: 12px;
+          float: right;
+      }
     }
 
     .message {
-        font-size: 1.2em;
+        font-size: 14px;
+        float: right;
+        padding-right: 11px;
+        padding-left: 16px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        width: fit-content;
+        border: 1px solid lightgrey;
+        border-radius: 6px;
+    
     }
+    
+}
+
+.admin-chat-message{
+  padding: 1.5em 2em 1.5em 0em;
+  margin: 0.5em;
+
+  .image-wrapper {
+    margin-right: 1em;
+    height: 50px;
+    width: 50px;
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+
+  .name {
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .timestamp {
+    margin-bottom: 0.5em;
+    padding-right: 4.5em;
+    color: darken($light-grey, 15%);
+    font-size: 12px;
+  }
+
+  .message {
+    font-size: 14px;
+    border: 1px solid lightgrey;
+    width: fit-content;
+    border-radius: 6px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 16px;
+    padding-left: 11px;
+  }
 }

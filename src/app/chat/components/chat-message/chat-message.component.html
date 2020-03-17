@@ -1,17 +1,33 @@
-<div class="chat-message d-flex">
+<ng-container *ngIf="!message.sender.admin else admin">
+  <div class="chat-message d-flex">
+    
+      <div class="bubble">
+          <div class="timestamp-container"><small class="timestamp">{{message.createdAt?.toDate()}}  </small></div>
+          <div class="message">
+            {{message.message}}
+          </div>
+      </div>
 
-    <div class="image-wrapper">
-        <img [src]="message.sender?.photoUrl" class="rounded-circle">
-    </div>
+      <div class="image-wrapper">
+          <img [src]="message.sender?.photoUrl" class="rounded-circle">
+      </div>
 
-    <div class="bubble d-flex flex-column">
-        <div class="name">
-            {{message.sender?.lastName}} {{message.sender?.firstName}} 
-        </div>
-        <small class="timestamp">{{message.createdAt}}  </small>
-       <div class="message">
-        {{message.message}}
-        </div>
-    </div>
-                                  
-</div>
+  </div>
+</ng-container>
+
+<ng-template #admin>
+  <div class="admin-chat-message d-flex">
+
+      <div class="image-wrapper">
+          <img [src]="message.sender?.photoUrl" class="rounded-circle">
+      </div>
+
+      <div class="bubble d-flex flex-column">  
+          <small class="timestamp">{{message.createdAt?.toDate()}}  </small>
+          <div class="message">
+            {{message.message}}
+          </div>
+      </div>
+                                    
+  </div>
+</ng-template>

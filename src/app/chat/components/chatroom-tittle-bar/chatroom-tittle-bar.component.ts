@@ -15,6 +15,7 @@ export class ChatroomTittleBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+      
   }
 
 

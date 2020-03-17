@@ -39,7 +39,7 @@ export class BottomBarComponent implements OnInit, OnDestroy {
       for(var i = 0 ; i <this.items.length; i++){
         tQuantity = tQuantity + this.items[i].cartQuantity
       }
-      console.log(tQuantity)
+      
       this.takeTotalQuantity(tQuantity) 
       })
     ) 
@@ -56,7 +56,6 @@ export class BottomBarComponent implements OnInit, OnDestroy {
   
   public takeTotalQuantity(value: number){
     this.totalQuantity = value;
-    console.log(this.totalQuantity)
   } 
 
 

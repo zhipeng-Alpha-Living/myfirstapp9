@@ -1,15 +1,21 @@
 @import "../../../../variables.scss";
 
 .chatroom-list {
-    border-right: 2px solid $light-grey;
-    overflow-y: scroll;
+  border-right: 2px solid $light-grey;
+  overflow-y: scroll;
+  width: 100%;
 
-    .chatroom-list-item {
-        border-bottom: 1px solid $light-grey;
-        padding: 1em; 
+  .chatroom-list-item {
+    width: 100%;
+    border-bottom: 1px solid $light-grey;
+    padding: 1em;
+    text-align: center;
+
+    a {
+      font-size: 16px;
+      font-weight: bold;
+      vertical-align: middle;
     }
+  }
 }
 
-a {
-  font-size: 1.5vw;
-}

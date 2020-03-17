@@ -1,4 +1,5 @@
 export interface User {
+    admin: boolean;
     firstName: string;
     lastName: string;
     photoUrl: string;

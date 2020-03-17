@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { ChatroomService } from '../../../services/chatroom.service';
 import { AngularFirestore} from 'angularfire2/firestore';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-chatroom-window',
@@ -16,12 +17,14 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
   public subscriptions: Subscription[] = [];
   public chatroom: any;
   public messages: any;
+  public user: any;
 
 
   constructor(
     private route: ActivatedRoute,
     public chatroomService: ChatroomService,
     public db: AngularFirestore,
+    public authService: AuthService,
   
     //private loadingService: LoadingService,
   ) {
@@ -38,18 +41,26 @@ export class ChatroomWindowComponent implements OnInit, OnDestroy, AfterViewChec
         //this.loadingService.isLoading.next(false); 
       })
     );
-   }
+
+    this.subscriptions.push(
+      this.authService.currentUser.subscribe( user => {
+        this.user = user;
+        this.chatroomService.changeChatroom.next("mQluTbumTqUKznBUoiJCY4q9NXs2");
+      }) 
+    );
+    
+    
+  }
 
   ngOnInit() {
     this.scrollToBotom();
     this.subscriptions.push(
       this.route.paramMap.subscribe(params => {
-        const chatroomId = params.get('chatroomId');
-          this.chatroomService.changeChatroom.next("mQluTbumTqUKznBUoiJCY4q9NXs2");
+          //this.chatroomService.changeChatroom.next(this.user.id);
       })
     );
   }
-
+  
   ngOnDestroy() {
     this.subscriptions.forEach( sub => sub.unsubscribe());
   }
