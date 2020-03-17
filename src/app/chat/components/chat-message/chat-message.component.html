@@ -1,4 +1,4 @@
-<ng-container *ngIf="!message.sender.admin else admin">
+<ng-container *ngIf="message.sender.id === user.id else left">
   <div class="chat-message d-flex">
     
       <div class="bubble">
@@ -11,12 +11,12 @@
       <div class="image-wrapper">
           <img [src]="message.sender?.photoUrl" class="rounded-circle">
       </div>
-
+        
   </div>
 </ng-container>
 
-<ng-template #admin>
-  <div class="admin-chat-message d-flex">
+<ng-template #left>
+  <div class="left-chat-message d-flex">
 
       <div class="image-wrapper">
           <img [src]="message.sender?.photoUrl" class="rounded-circle">
@@ -28,6 +28,6 @@
             {{message.message}}
           </div>
       </div>
-                                    
+                              
   </div>
 </ng-template>

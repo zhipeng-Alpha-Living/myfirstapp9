@@ -2,7 +2,7 @@
     <app-chatroom-tittle-bar></app-chatroom-tittle-bar>
     <div class="message-wrapper h-100" #scrollContainer>
         <ng-container *ngFor="let message of messages">
-            <app-chat-message [message]="message"></app-chat-message>
+            <app-chat-message [message]="message" [user]="user"></app-chat-message>
         </ng-container>
     </div>
     <app-chat-input></app-chat-input>
