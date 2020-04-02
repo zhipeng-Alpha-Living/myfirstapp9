@@ -13,7 +13,7 @@
           <a [routerLink]="['/products', product.productId]" class="productName-font"> {{product.productName}} </a>
           </div>
           <p *ngIf="product.description">
-            {{ product.description}}
+            <strong>{{ product.description}}</strong>
           </p>
           <p *ngIf="product.price">
             Price: RM{{ product.price}}
